@@ -1,4 +1,4 @@
-require_relative 'config'
+require_relative 'db_config'
 require_relative 'checkpoint'
 
 Checkpoint.delete_all # everytime I run seed delete all records
