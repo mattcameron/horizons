@@ -1,10 +1,11 @@
 require 'sinatra'
 require 'sinatra/reloader'
-require 'active_record'
 require_relative 'main'
 require_relative 'race'
 require_relative 'user'
 require_relative 'checkpoint'
+require_relative 'db_config'
+require 'pry'
 
 enable :sessions
 
@@ -42,21 +43,33 @@ end
   	checkpoints.to_json
   end
 
-  post '/session' do
-		@user = User.where(email: params[:email]).first
-		if @user && @user.authenticate(params[:password])
-			session[:user_id] = @user.id
-			redirect to '/'
-		else
-			erb :login
-		end
-	end
+
+
 
 	post '/signup' do
 	@user = User.create( username: params[:username], email: params[:email], password: params[:password])
 		session[:user_id] = @user.id
 	redirect to ('/')
 end
+
+
+# SESSION STUFF
+
+post '/session' do
+	@user = User.where(email: params[:email]).first
+	if @user && @user.authenticate(params[:password])
+		session[:user_id] = @user.id
+		redirect to '/'
+	else
+		erb :login
+	end
+end
+
+delete '/session' do
+	session[:user_id] = nil
+	redirect to '/'
+end
+
 
 
 helpers do
