@@ -57,7 +57,6 @@ function initialize() {
     new google.maps.LatLng(-37.818125, 144.964829),
     new google.maps.LatLng(-37.818805, 144.962464)
   ];
-
   // creates a new circle (goal) for each checkpoint
   $.each(checkpoints, function(index, value) {
     var newPoly = new google.maps.Polygon({

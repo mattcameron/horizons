@@ -1,9 +1,11 @@
 CREATE DATABASE horizons;
 
-CREATE TABLE locations (
+CREATE TABLE checkpoints (
 	id SERIAL4 PRIMARY KEY,
-	latitude VARCHAR(500) NOT NULL,
-	longitude VARCHAR(500) NOT NULL,
+  name VARCHAR(50),
+  description VARCHAR(500),
+	latitude INTEGER NOT NULL,
+	longitude INTEGER NOT NULL,
 );
 
 
