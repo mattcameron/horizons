@@ -6,22 +6,26 @@ require_relative 'checkpoint_race_user'
 
 Checkpoint.delete_all # everytime I run seed delete all records
 
-Checkpoint.create name: "Queen St/Flinders Lane",
+Checkpoint.create id: 1,
+	name: "Queen St/Flinders Lane",
 	description: "On the corner of Queen Street and Flinders Lane",
 	latitude: -37.817896,
 	longitude: 144.962034
 
-Checkpoint.create name: "Elizabeth St/Flinders Lane",
+Checkpoint.create id: 2,
+	name: "Elizabeth St/Flinders Lane",
 	description: "On the corner of Elizabeth Street and Flinders Lane",
 	latitude: -37.817231,
 	longitude: 144.964400
 
-Checkpoint.create name: "Elizabeth St/Flinders Street",
+Checkpoint.create id: 3,
+	name: "Elizabeth St/Flinders Street",
 	description: "On the corner of Elizabeth Street and Flinders Street",
 	latitude: -37.818125,
 	longitude: 144.964829
 
-Checkpoint.create name: "Queen St/Flinders Street",
+Checkpoint.create id: 4,
+	name: "Queen St/Flinders Street",
 	description: "On the corner of Queen Street and Flinders Street",
 	latitude: -37.818805,
 	longitude: 144.962464
@@ -29,43 +33,52 @@ Checkpoint.create name: "Queen St/Flinders Street",
 
 User.delete_all
 
-User.create user_name: "Beta",
+User.create id: 1,
+	user_name: "Beta",
 	email: "beta@37celcius.com",
 	password: "password"
 
-User.create user_name: "DT",
+User.create id: 2,
+	user_name: "DT",
 	email: "DT@GA.com",
 	password: "password1"
 
-User.create user_name: "Phil",
+User.create id: 3,
+	user_name: "Phil",
 	email: "phil@littlepony.com",
 	password: "bigpony"
 
 
 Race.delete_all
 
-Race.create name: "Melbourne Madness",
+Race.create id: 1,
+	name: "Melbourne Madness",
 	created_at: Time.now
 
 
-Checkpoint_Race_User.delete_all
+CheckpointRaceUser.delete_all
 
-Checkpoint_Race_User.create user_id: 1,
+CheckpointRaceUser.create id: 1,
+	user_id: 1,
+	checkpoint_id: 2,
+	race_id: 1
+
+CheckpointRaceUser.create id: 2,
+	user_id: 1,
 	checkpoint_id: 3,
 	race_id: 1
 
-Checkpoint_Race_User.create user_id: 1,
-	checkpoint_id: 2,
-	race_id: 1
-
-Checkpoint_Race_User.create user_id: 2,
+CheckpointRaceUser.create id: 3,
+	user_id: 2,
 	checkpoint_id: 1,
 	race_id: 1
 
-Checkpoint_Race_User.create user_id: 2,
+CheckpointRaceUser.create id: 4,
+	user_id: 2,
 	checkpoint_id: 2,
 	race_id: 1
 
-Checkpoint_Race_User.create user_id: 3,
+CheckpointRaceUser.create id: 5,
+	user_id: 3,
 	checkpoint_id: 2,
 	race_id: 1
