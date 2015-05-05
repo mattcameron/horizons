@@ -1,12 +1,24 @@
-require 'sinatra/base' 
+require 'sinatra'
+require 'sinatra/reloader'
 
-class HelloWorld < Sinatra::Base
   get '/' do
     erb :index
   end
-end
 
+  get '/register' do
+  	erb :register
+  end
 
+  get '/login' do
+  	erb :login
+  end
 
+  get '/race' do
+  	erb :race
+  end
+
+  get '/status' do
+  	erb :status
+  end
 
 
