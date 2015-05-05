@@ -1,5 +1,11 @@
 require 'sinatra'
 require 'sinatra/reloader'
+require 'active_record'
+require_relative 'main'
+require_relative 'race'
+require_relative 'user'
+require_relative 'checkpoint'
+
 
   get '/' do
     erb :index
@@ -19,6 +25,12 @@ require 'sinatra/reloader'
 
   get '/status' do
   	erb :status
+  end
+
+  get '/api/checkpoints' do
+  	content_type :json
+  	checkpoints = Checkpoint.all
+  	checkpoints.to_json
   end
 
 
