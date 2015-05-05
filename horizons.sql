@@ -22,7 +22,7 @@ CREATE TABLE races (
   created_at TIMESTAMP
 );
 
-CREATE TABLE checkpoints_races_users (
+CREATE TABLE checkpoint_race_users (
   user_id INTEGER,
   checkpoint_id INTEGER,
   race_id INTEGER
