@@ -6,6 +6,15 @@ require_relative 'race'
 require_relative 'user'
 require_relative 'checkpoint'
 
+enable :sessions
+
+before do
+		@user = current_user
+end
+
+after do
+	ActiveRecord::Base.connection.close
+end
 
   get '/' do
     erb :index
@@ -33,4 +42,30 @@ require_relative 'checkpoint'
   	checkpoints.to_json
   end
 
+  post '/session' do
+		@user = User.where(email: params[:email]).first
+		if @user && @user.authenticate(params[:password])
+			session[:user_id] = @user.id
+			redirect to '/'
+		else
+			erb :login
+		end
+	end
+
+	post '/signup' do
+	@user = User.create( username: params[:username], email: params[:email], password: params[:password])
+		session[:user_id] = @user.id
+	redirect to ('/')
+end
+
+
+helpers do
+	def logged_in?
+		!!current_user
+	end
+
+	def current_user
+			User.find_by(id: session[:user_id])
+	end
+end
 
