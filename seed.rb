@@ -53,7 +53,8 @@ Race.delete_all
 
 Race.create id: 1,
 	name: "Melbourne Madness",
-	created_at: Time.now
+	created_at: Time.now,
+	ended: false
 
 
 CheckpointRaceUser.delete_all
