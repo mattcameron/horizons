@@ -90,6 +90,13 @@ get '/api/checkpoints' do
 	checkpoints.to_json
 end
 
+post '/api/checkpoints/:id/new' do
+	newCP = CheckpointRaceUser.create(
+		user_id: current_user.id,
+		checkpoint_id: params[:id],
+		race_id: current_race.id)
+end
+
 # LOGIN
 post '/signup' do
 	@user = User.create( user_name: params[:username], email: params[:email], password: params[:password])

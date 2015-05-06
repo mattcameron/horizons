@@ -38,11 +38,19 @@ function inCircle(point, polys) {
       // remove the checkpoint
       value.setMap(null);
 
-      // display a message
+      // add the checkpoint to the database
+      var url = 'api/checkpoints/' + value.id + '/new'
+      $.ajax({
+        url: url,
+        method: 'post'
+      }).done(function() {
+
+      // display a message (or something more exciting)
       alert('Congratulations, you reached a checkpoint!')
+      });
+      return;
     }
   });
-
 }
 
 function initialize() {
@@ -74,7 +82,8 @@ function initialize() {
         fillColor: '#0000FF',
         fillOpacity: 0.7,
         map: map,
-        paths: drawCircle(new google.maps.LatLng(value.latitude, value.longitude),.03,1)
+        paths: drawCircle(new google.maps.LatLng(value.latitude, value.longitude),.03,1),
+        id: value.id
       })
 
       // show the new circle on the map

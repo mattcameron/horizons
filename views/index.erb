@@ -39,6 +39,13 @@
 
 <!-- Reveal Modals end -->
 
+<% if logged_in? %>
+	<p>Logged In</p>
+<% else %>
+	<p>Not Logged In</p>
+<% end %>
+
+
 <% if race_running? %>
 	<form action="/race/join" method="post">
 		<input type="submit" value="Join Race">
