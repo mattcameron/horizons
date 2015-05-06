@@ -19,7 +19,8 @@ CREATE TABLE users (
 CREATE TABLE races (
   id SERIAL4 PRIMARY KEY,
   name VARCHAR(50) NOT NULL,
-  created_at TIMESTAMP
+  created_at TIMESTAMP,
+  ended BOOLEAN
 );
 
 CREATE TABLE checkpoint_race_users (
