@@ -1,3 +1,8 @@
+
+  // checkpoints reached
+  var checkpointsHit = [];
+
+
 // function to check whether a specific point is within any of our checkpoints
 function inCheckpoint(point) {
   $.each(locationPolys, function(index, value) {
@@ -15,10 +20,23 @@ function inCheckpoint(point) {
         method: 'post'
       }).done(function() {
 
-      // display a message (or something more exciting)
-      alert('Congratulations, you reached a checkpoint!')
+        // add the checkpoints to checkpointsHit
+        checkpointsHit.push(value.id);
+
+        // check if the game is over
+        allCheckpoints();
       });
       return;
-    }
+    };
   });
+}
+
+function allCheckpoints() {
+  if ( checkpointsHit.length === locationPolys.length ) {
+    // the user has won and the game is over
+    alert('WOOOO HOOOOO!!! YOU WON THE GAME!')
+  } else {
+    // game is still running
+    alert('Congratulations, you reached a checkpoint!')
+  };
 }

@@ -39,9 +39,6 @@ function initialize() {
   map = new google.maps.Map(document.getElementById('map-canvas'),
       mapOptions);
 
-  // setting an empty array for checkpoints
-  var checkpoints = [];
-
   // get the checkpoints from the api
   $.ajax({
     url: "/api/checkpoints",
