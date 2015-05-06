@@ -49,3 +49,7 @@
 		<input type="submit" value="New Race">
 	</form>
 <% end %>
+<%= @current_race.name %>
+ <% @users.each do |user|  %>
+ 	<p><%= user.user_name%><%= user.checkpoints%><p>
+ <% end %>  
