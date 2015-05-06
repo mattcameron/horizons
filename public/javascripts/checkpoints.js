@@ -40,8 +40,6 @@ function inCircle(point, polys) {
 
       // display a message
       alert('Congratulations, you reached a checkpoint!')
-    } else {
-      return false;
     }
   });
 
