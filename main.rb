@@ -34,12 +34,18 @@ get '/race' do
 end
 
 post '/race/new' do
+	# create new race
 	race = Race.create(name: "New Race", created_at: Time.now, ended: false)
-	checkpoints = [
-		CheckpointRaceUser.create(checkpoint_id: 1, race_id: race.id),
-		CheckpointRaceUser.create(checkpoint_id: 2, race_id: race.id),
-		CheckpointRaceUser.create(checkpoint_id: 3, race_id: race.id),
-		CheckpointRaceUser.create(checkpoint_id: 4, race_id: race.id)]
+
+	# add the 4 default checkpoints to this race
+	CheckpointRaceUser.create(checkpoint_id: 1, race_id: race.id),
+	CheckpointRaceUser.create(checkpoint_id: 2, race_id: race.id),
+	CheckpointRaceUser.create(checkpoint_id: 3, race_id: race.id),
+	CheckpointRaceUser.create(checkpoint_id: 4, race_id: race.id)
+
+	# add the current user to this race
+	CheckpointRaceUser.create(race_id: race.id, user_id: current_user.id)
+
 	redirect to '/race'
 end
 
