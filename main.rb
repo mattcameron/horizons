@@ -18,6 +18,8 @@ after do
 end
 
 get '/' do
+	@race = Race.last
+	@users = @race.users.distinct
   erb :index
 end
 

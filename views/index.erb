@@ -43,8 +43,26 @@
 	<form action="/race/join" method="post">
 		<input type="submit" value="Join Race">
 	</form>
+
+	<h2>Current Race</h2>
 <% else %>
 	<form action="/race/new" method="post">
 		<input type="submit" value="New Race">
 	</form>
+	<h2>Last Race</h2>
 <% end %>
+
+
+<!-- List Users of the most recent race -->
+<% @users.each do |user| %>
+
+<div class="row">
+  <div class="small-4 columns"><%= user.user_name %></div>
+  <div class="small-4 columns"><%= user.checkpoints.distinct.count %>/<%= @race.checkpoints.distinct.count %></div>
+  <div class="small-4 columns">Time</div>
+</div>
+<% end %>
+
+
+
+
