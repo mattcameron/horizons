@@ -1,10 +1,10 @@
 require 'sinatra'
 require 'sinatra/reloader'
-require_relative 'main'
+require_relative 'db_config'
+require_relative 'checkpoint_race_user'
 require_relative 'race'
 require_relative 'user'
 require_relative 'checkpoint'
-require_relative 'db_config'
 require 'pry'
 
 enable :sessions
@@ -31,6 +31,16 @@ end
 
 get '/race' do
 	erb :race
+end
+
+post '/race/new' do
+	race = Race.create(name: "New Race", created_at: Time.now)
+	checkpoints = [
+		CheckpointRaceUser.create(checkpoint_id: 1, race_id: race.id),
+		CheckpointRaceUser.create(checkpoint_id: 2, race_id: race.id),
+		CheckpointRaceUser.create(checkpoint_id: 3, race_id: race.id),
+		CheckpointRaceUser.create(checkpoint_id: 4, race_id: race.id)]
+	redirect to '/race'
 end
 
 get '/status' do
