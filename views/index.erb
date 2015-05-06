@@ -1,4 +1,4 @@
-<link rel='stylesheet' href='/stylesheets/flipper.css'>
+
 <h1>Home Page</h1>
 
 
@@ -38,3 +38,14 @@
 </div>
 
 <!-- Reveal Modals end -->
+
+<% if race_running? %>
+	<!-- <form action="/race/join" method="post">
+		<input type="submit" value="Join Race">
+	</form> -->
+	<button id="join_race_btn">Join Race</button>
+<% else %>
+	<form action="/race/new" method="post">
+		<input type="submit" value="New Race">
+	</form>
+<% end %>

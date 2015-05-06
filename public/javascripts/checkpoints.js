@@ -1,6 +1,7 @@
 
 var bounds = new google.maps.LatLngBounds();
 var locationPolys = [];
+var map;
 
 
 // function for drawing circles and returning their path
@@ -27,13 +28,20 @@ function drawCircle(point, radius, dir) {
   return extp;
 }
 
-// function to check whether a specific point is in any of our destination location circles.
+// function to check whether a specific point is in any of our destination location circles
 function inCircle(point, polys) {
   $.each(polys, function(index, value) {
 
-    // if the point is in a waypoint, then remove that waypoint
+    // if the point is in a waypoint
     if (google.maps.geometry.poly.containsLocation(point, value)) {
+
+      // remove the checkpoint
       value.setMap(null);
+
+      // display a message
+      alert('Congratulations, you reached a checkpoint!')
+    } else {
+      return false;
     }
   });
 
@@ -47,33 +55,36 @@ function initialize() {
   };
 
   // declare the map as the 'map-canvas' div
-  var map = new google.maps.Map(document.getElementById('map-canvas'),
+  map = new google.maps.Map(document.getElementById('map-canvas'),
       mapOptions);
 
-  // setting destination checkpoints
-  var checkpoints = [
-    new google.maps.LatLng(-37.817896, 144.962034),
-    new google.maps.LatLng(-37.817231, 144.964400),
-    new google.maps.LatLng(-37.818125, 144.964829),
-    new google.maps.LatLng(-37.818805, 144.962464)
-  ];
-  // creates a new circle (goal) for each checkpoint
-  $.each(checkpoints, function(index, value) {
-    var newPoly = new google.maps.Polygon({
-      strokeColor: '#000000',
-      strokeOpacity: 0.8,
-      strokeWeight: 0,
-      fillColor: '#0000FF',
-      fillOpacity: 0.7,
-      map: map,
-      paths: drawCircle(checkpoints[index],.03,1)
+  // setting an empty array for checkpoints
+  var checkpoints = [];
+
+  // get the checkpoints from the api
+  $.ajax({
+    url: "/api/checkpoints",
+    method: "get"
+  }).done(function(data) {
+
+    // creates a new circle for each checkpoint
+    $.each(data, function(index, value) {
+      var newPoly = new google.maps.Polygon({
+        strokeColor: '#000000',
+        strokeOpacity: 0.8,
+        strokeWeight: 0,
+        fillColor: '#0000FF',
+        fillOpacity: 0.7,
+        map: map,
+        paths: drawCircle(new google.maps.LatLng(value.latitude, value.longitude),.03,1)
+      })
+
+      // show the new circle on the map
+      newPoly.setMap(map);
+
+      // push it to our locationPolys array
+      locationPolys.push(newPoly)
     })
-
-    // show the new circle on the map
-    newPoly.setMap(map);
-
-    // push it to our locationPolys array
-    locationPolys.push(newPoly)
 
   });
 
