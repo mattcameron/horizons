@@ -1,5 +1,12 @@
 <h1>Home Page</h1>
 
-<form action="/race/new" method="post">
-	<input type="submit" value="New Race">
-</form>
+<% if race_running? %>
+	<!-- <form action="/race/join" method="post">
+		<input type="submit" value="Join Race">
+	</form> -->
+	<button id="join_race_btn">Join Race</button>
+<% else %>
+	<form action="/race/new" method="post">
+		<input type="submit" value="New Race">
+	</form>
+<% end %>

@@ -34,13 +34,35 @@ get '/race' do
 end
 
 post '/race/new' do
-	race = Race.create(name: "New Race", created_at: Time.now)
+	race = Race.create(name: "New Race", created_at: Time.now, ended: false)
 	checkpoints = [
 		CheckpointRaceUser.create(checkpoint_id: 1, race_id: race.id),
 		CheckpointRaceUser.create(checkpoint_id: 2, race_id: race.id),
 		CheckpointRaceUser.create(checkpoint_id: 3, race_id: race.id),
 		CheckpointRaceUser.create(checkpoint_id: 4, race_id: race.id)]
 	redirect to '/race'
+end
+
+# a user wants to join a race
+post '/race/join/:lat/:lng' do
+	# make sure they are logged in
+	# redirect to '/login' if !logged_in?
+
+	# Create checkpoint at their location
+	new_checkpoint = Checkpoint.create(
+		name: "#{current_user.name} starting point",
+		latitude: params[:lat],
+		longitude: params[:lng])
+
+	# Mark that checkpoint as reached
+	CheckpointRaceUser.create(
+		user_id: current_user.id,
+		checkpoint_id: new_checkpoint.id,
+		race_id: current_race.id)
+
+	# Redirect to /race
+	redirect to '/race'
+
 end
 
 get '/status' do
@@ -103,6 +125,20 @@ helpers do
 
 	def current_user
 			User.find_by(id: session[:user_id])
+	end
+
+	def current_race
+		# return the current race, if there is one running
+		if Race.last.ended != true
+			current_race = Race.last
+		else
+			current_race = false
+		end
+		current_race
+	end
+
+	def race_running?
+		!!current_race
 	end
 end
 
