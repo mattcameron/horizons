@@ -1,6 +1,7 @@
 
 var bounds = new google.maps.LatLngBounds();
 var locationPolys = [];
+var map;
 
 
 // function for drawing circles and returning their path
@@ -47,7 +48,7 @@ function initialize() {
   };
 
   // declare the map as the 'map-canvas' div
-  var map = new google.maps.Map(document.getElementById('map-canvas'),
+  map = new google.maps.Map(document.getElementById('map-canvas'),
       mapOptions);
 
   // setting an empty array for checkpoints
