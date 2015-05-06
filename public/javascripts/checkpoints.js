@@ -28,13 +28,20 @@ function drawCircle(point, radius, dir) {
   return extp;
 }
 
-// function to check whether a specific point is in any of our destination location circles.
+// function to check whether a specific point is in any of our destination location circles
 function inCircle(point, polys) {
   $.each(polys, function(index, value) {
 
-    // if the point is in a waypoint, then remove that waypoint
+    // if the point is in a waypoint
     if (google.maps.geometry.poly.containsLocation(point, value)) {
+
+      // remove the checkpoint
       value.setMap(null);
+
+      // display a message
+      alert('Congratulations, you reached a checkpoint!')
+    } else {
+      return false;
     }
   });
 

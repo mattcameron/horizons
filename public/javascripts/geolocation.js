@@ -22,6 +22,9 @@ if ("geolocation" in navigator) {
       map: map,
       title: 'My Current Position!'
     });
+
+    //check if the current position is within a checkpoint
+    inCircle(currentPosition, locationPolys)
   }
 
   // function to run if there is an error getting the current location
@@ -40,3 +43,4 @@ if ("geolocation" in navigator) {
   alert("Geolocation is not available on this device. This game will not work :(")
     window.location.replace("/")
 }
+
