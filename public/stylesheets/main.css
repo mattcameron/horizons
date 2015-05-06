@@ -1,0 +1,43 @@
+/*Race.erb CSS****************************/
+#whole-page {
+	z-index: -1;
+}
+#container {
+	width: 100%;
+	height: 10%;
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	z-index: 50;
+	margin-bottom: 4em;
+}
+
+#map-canvas {
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	z-index: 10;
+}
+
+.timebox, .checkpoint {
+	color: tomato;
+}
+
+.username {
+	margin-bottom: 0px;
+}
+
+.timer {
+	font-size: 4em;
+	margin-bottom: 0px;
+}
+
+.progress p {
+	margin-bottom: -1px;
+}
+
+.btnLogout {
+	margin-top: 2em;
+}
+
+/******************************************/

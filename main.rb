@@ -1,5 +1,7 @@
 require 'sinatra'
 require 'sinatra/reloader'
+
+
 require_relative 'db_config'
 require_relative 'checkpoint_race_user'
 require_relative 'race'
@@ -96,7 +98,6 @@ post '/signup' do
 	redirect to '/'
 end
 
-
 # SESSION STUFF
 post '/session' do
 	@user = User.where(email: params[:email]).first
@@ -112,8 +113,6 @@ delete '/session' do
 	session[:user_id] = nil
 	redirect to '/'
 end
-
-
 
 
 # HELPERS
