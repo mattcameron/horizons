@@ -1,7 +1,5 @@
 require 'sinatra'
 require 'sinatra/reloader'
-
-
 require_relative 'db_config'
 require_relative 'checkpoint_race_user'
 require_relative 'race'
@@ -45,21 +43,14 @@ post '/race/new' do
 	redirect to '/race'
 end
 
-# a user wants to join a race
-post '/race/join/:lat/:lng' do
+
+post '/race/join' do
 	# make sure they are logged in
-	# redirect to '/login' if !logged_in?
+	redirect to '/login' if !logged_in?
 
-	# Create checkpoint at their location
-	new_checkpoint = Checkpoint.create(
-		name: "#{current_user.name} starting point",
-		latitude: params[:lat],
-		longitude: params[:lng])
-
-	# Mark that checkpoint as reached
+	# Add current user to the current race
 	CheckpointRaceUser.create(
 		user_id: current_user.id,
-		checkpoint_id: new_checkpoint.id,
 		race_id: current_race.id)
 
 	# Redirect to /race
