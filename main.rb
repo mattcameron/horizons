@@ -37,6 +37,20 @@ get '/status' do
 	erb :status
 end
 
+get '/checkpoints' do
+	@checkpoints = Checkpoint.all
+	erb :checkpoints
+end
+
+get '/checkpoints/new' do
+	erb :new_checkpoint
+end
+
+post '/checkpoints/new' do
+	Checkpoint.create( name: params[:name], description: params[:description], latitude: params[:latitude], longitude: params[:longitude])
+		redirect to '/checkpoints'
+end
+
 get '/api/checkpoints' do
 	content_type :json
 	checkpoints = Checkpoint.all
@@ -47,7 +61,7 @@ end
 post '/signup' do
 	@user = User.create( user_name: params[:username], email: params[:email], password: params[:password])
 		session[:user_id] = @user.id
-	redirect to ('/')
+	redirect to '/'
 end
 
 
