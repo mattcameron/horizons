@@ -1,6 +1,7 @@
 require 'sinatra'
 require 'sinatra/reloader'
 require 'active_record'
+require_relative 'db_config'
 require_relative 'main'
 require_relative 'race'
 require_relative 'user'
@@ -53,10 +54,10 @@ end
 	end
 
 	post '/signup' do
-	@user = User.create( username: params[:username], email: params[:email], password: params[:password])
-		session[:user_id] = @user.id
-	redirect to ('/')
-end
+	 @user = User.create( username: params[:username], email: params[:email], password: params[:password])
+	 session[:user_id] = @user.id
+	 redirect to ('/')
+  end
 
 
 helpers do
