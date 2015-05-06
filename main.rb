@@ -86,7 +86,13 @@ end
 
 get '/api/checkpoints' do
 	content_type :json
-	checkpoints = Checkpoint.all
+	checkpoints = current_race.checkpoints.distinct
+	checkpoints.to_json
+end
+
+get '/api/checkpoints/completed' do
+	content_type :json
+	checkpoints = current_user.checkpoints.distinct # shouldn't need distinct in real life
 	checkpoints.to_json
 end
 
