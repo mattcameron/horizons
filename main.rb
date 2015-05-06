@@ -12,7 +12,10 @@ require 'pry'
 enable :sessions
 
 before do
-		@user = current_user
+	User.joins(:checkpoints)
+	@current_race = Race.last
+	@user = current_user
+	@users = User.all
 end
 
 after do
@@ -36,7 +39,7 @@ get '/race' do
 end
 
 post '/race/new' do
-	race = Race.create(name: "New Race", created_at: Time.now, ended: false)
+	@race = Race.create(name: "New Race", created_at: Time.now, ended: false)
 	checkpoints = [
 		CheckpointRaceUser.create(checkpoint_id: 1, race_id: race.id),
 		CheckpointRaceUser.create(checkpoint_id: 2, race_id: race.id),
@@ -88,6 +91,23 @@ end
 get '/api/checkpoints' do
 	content_type :json
 	checkpoints = Checkpoint.all
+	checkpoints.to_json
+end
+
+# Get unique checkpoints for race
+get '/api/get_race_cp/:race_id' do
+	content_type :json
+	race = Race.find(params[:race_id])
+	Race.joins(:checkpoints)
+	checkpoints = race.checkpoints.uniq
+	checkpoints.to_json
+end
+
+get '/api/get_user_cp/:user_id' do
+	content_type :json
+	user = User.find(params[:user_id])
+	User.joins(:checkpoints)
+	checkpoints = user.checkpoints
 	checkpoints.to_json
 end
 
