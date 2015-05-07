@@ -1,0 +1,1 @@
+$(".main").onepage_scroll({sectionContainer:"section",easing:"ease",animationTime:1e3,pagination:!0,updateURL:!1,loop:!1,keyboard:!0,responsiveFallback:!1,direction:"vertical"});
