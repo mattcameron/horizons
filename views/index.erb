@@ -40,7 +40,7 @@
 <!-- Reveal Modals end -->
 
 <% if logged_in? %>
-	<p>Logged In</p>
+	<p>Logged In as <%= current_user.user_name %></p>
 <% else %>
 	<p>Not Logged In</p>
 <% end %>
