@@ -10,9 +10,15 @@
 	position: absolute;
 }
 
+.progress p {
+	margin-bottom: -1px;
+}
 
+.user_meter {
+	width: 0%;
+}
 
-
+/******************************************/
 
 meta.foundation-version {
   font-family: "/5.5.2/"; }

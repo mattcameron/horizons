@@ -1,3 +1,4 @@
+
 <% if race_running? %>
 	<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?libraries=geometry"></script>
 	<script src="javascripts/checkpoints.js"></script>
@@ -40,8 +41,12 @@
 
 				</div>
 
+
 				<div class="medium-1 columns hide-for-small-only">
-					<button class="btnLogout-inGame"><span class="fa fa-power-off"></span></button>
+					<form action="/session" method ="post" >
+							<input type="hidden" name="_method" value="delete">
+						<button class="btnLogout-inGame"><span class="fa fa-power-off"></span></button>
+					</form>
 				</div>
 			</div>
 		</div>
