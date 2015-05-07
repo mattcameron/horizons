@@ -18,6 +18,9 @@
 	width: 0%;
 }
 
+/******************************************/
+
+
 html {
   height: 100%;
   max-height: 100%; }
@@ -59,7 +62,7 @@ main {
   background-size: cover; }
 
 .pageContentWrapper {
-  margin-top: 160px; }
+  margin-top: 145px; }
 
 .horizon-Page-Blurb {
   position: relative; }
@@ -195,9 +198,6 @@ span.prefix, label.prefix {
   .horizon-Page-Blurb {
     display: none; }
 
-  .aslan-logo {
-    height: 40px; }
-
   .horizon-Page-Race-Columns h5 {
     font-size: .725em; }
 
@@ -294,25 +294,129 @@ h5.inGame-Checkpoint {
 }
 
 .btnLogout-inGame {
-	color: #0c1c2d;
-	padding: 0;
-	background: transparent;
-	  font-size: 4em;
+color: #fafafa;
+  background: #0c1c2d;
+  font-size: 1em;
+  line-height: 1.75;
   margin-bottom: 0;
-  margin-top: 45px;
+  margin-top: 50px;
+  text-transform: uppercase;
 }
-.btnLogout-inGame:hover, .btnLogout-inGame:focus {
-	background: transparent;
-}
-
 
 .btnLogout-inGame:hover {
-	color: #f9ce55;
+	color: #0c1c2d;
+}
+
+#myStatusModal {
+	background: #0c1c2d;
+}
+
+#myStatusModal h2 {
+	color: #fafafa;
+	text-transform: uppercase;
+}
+
+.username-InGame-ModalBox .status-InGame {
+	width: 20px;
+	height: 20px;
+}
+
+#myStatusModal .close-reveal-modal {
+	color: #fafafa;
+}
+
+#myStatusModal .timer {
+	font-size: 84px;
+  font-weight: 700;
+  line-height: 1;
+  color: #fafafa;
+}
+
+#myStatusModal .btnLogout {
+	width: 100%;
+}
+
+.inGame-RELforCheckpointDIV-Menu {
+	position: relative;
+  font-size: 55px;
+  color: #fafafa;
+  text-align: center;
+    bottom: -38px;
+  background: #0c1c2d;
+}
+
+
+@media only screen and (max-width: 500px) {
+	.inGame-Checkpoint {
+		font-size: 14px;
+	}
+}
+
+/* NEW */
+#Main-Header-DIV {
+  z-index: 9999;
+}
+
+#HowToPlay {
+  background: #7669aa;
+}
+
+.howToPlay-Info h4{
+  font-family: "Open Sans", Helvetica, Roboto, Arial, sans-serif;;
+  text-transform: uppercase;
+  color: #fafafa;
+  font-size: 28px;
+  margin-top: 0;
+  border-bottom: 1px solid rgba(250,250,250,.90);
+
 }
 
 .colour-marker {
   color: #f52564; 
 }
-/******************************************/
 
+
+.howToPlay-Info ul {
+  list-style: none;
+  padding: 0;
+  margin: 20px 0 0 0;
+  color: #fafafa;
+}
+
+.howToPlay-Info ul li h3 {
+font-weight: 700;
+  font-size: 20px;
+  color: #FAFAFA;
+}
+
+.howToPlay-Info ul li i{
+  float: left;
+  width: 10%;
+  display: block;
+  background: #645894;
+  height: 40px;
+  text-align: center;
+  font-size: 21px;
+  line-height: 1.95;
+}
+
+.howToPlayList-Right {
+  width: 85%;
+  padding-left: 5%;
+  float: left;
+}
+
+.otherPageContent {
+    top: 145px;
+  position: relative;
+}
+
+.howToPlay-Devices {
+  height: 512px;
+  background: url("../img/devicesamples.png")no-repeat center;
+}
+
+.howToPlay-Devices .main-btn {
+  top: 50%;
+}
 

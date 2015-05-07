@@ -1,6 +1,7 @@
 
 var bounds = new google.maps.LatLngBounds();
 var locationPolys = [];
+var checkpointMarkers = [];
 var map;
 
 
@@ -42,7 +43,7 @@ function initialize() {
 
   // get the checkpoints from the api
   $.ajax({
-    url: "/api/checkpoints",
+    url: "/api/checkpoints/left",
     method: "get"
   }).done(function(data) {
 
@@ -53,9 +54,15 @@ function initialize() {
       // plot new checkpoint on the map
       newCheckpointMarker = new google.maps.Marker({
       position: thisLatLng,
+            optimized: false,
+      icon: "img/mainMarker.gif",
       map: map,
-      title: 'My Current Position!'
+      title: 'Checkpoint!',
+      id: index
     });
+
+      // push the marker into the checkpointMarkers array so we can access it later
+      checkpointMarkers.push(newCheckpointMarker)
 
       // create a transparent radius for the checkpoint
       var newPoly = new google.maps.Polygon({
@@ -64,7 +71,7 @@ function initialize() {
         strokeWeight: 0,
 
         fillColor: '#2ea5b9',
-        fillOpacity: 0.1,
+        fillOpacity: 0,
         map: map,
         paths: drawCircle(thisLatLng,.03,1),
         id: value.id

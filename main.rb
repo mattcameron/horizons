@@ -96,11 +96,16 @@ get '/api/checkpoints' do
 	checkpoints.to_json
 end
 
+# Current user checkpoints left to hit
+get '/api/checkpoints/left' do
+	content_type :json
+	current_user_checkpoints_left.to_json
+end
+
 # Current user completed checkpoints
 get '/api/checkpoints/completed' do
 	content_type :json
-	checkpoints = current_user.checkpoints.distinct # shouldn't need distinct in real life
-	checkpoints.to_json
+	current_user_checkpoints_hit.to_json
 end
 
 post '/api/checkpoints/:id/new' do
@@ -113,11 +118,11 @@ end
 
 # Current race
 get '/api/race' do
-
 	content_type :json
-	created_at = current_race.created_at
-	ms_from_epoch = (created_at.to_i * 1000)
-	ms_from_epoch.to_json
+	# created_at = current_race.created_at
+	# ms_from_epoch = (created_at.to_i * 1000)
+	# ms_from_epoch.to_json
+	current_race.to_json
 end
 
 post '/api/gameover' do
@@ -159,17 +164,35 @@ helpers do
 			User.find_by(id: session[:user_id])
 	end
 
-def current_race
-        # return the last race, even if there is not one running
-       current_race = Race.last
-end
+	def current_race
+		# return the last race, even if there is not one running
+			current_race = Race.last
+	end
+
+	def current_race_checkpoints
+		current_race.checkpoints.uniq
+	end
 
 	def race_running?
-    if current_race.ended == true
-        return false
-    else
-        return true
-    end
-   end
+		if current_race.ended == true
+			return false
+		else
+			return true
+		end
+	end
+
+	def current_user_checkpoints_hit
+		data = current_user.checkpoint_race_users.where("race_id = #{current_race.id} and checkpoint_id IS NOT NULL").uniq
+		checkpoints = data.map { |row|
+			Checkpoint.find(row[:checkpoint_id])
+		}
+	end
+
+	def current_user_checkpoints_left
+		current_race_checkpoints.select do |checkpoint|
+			!current_user_checkpoints_hit.include? checkpoint
+		end
+	end
+
 end
 
