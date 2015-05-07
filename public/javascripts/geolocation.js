@@ -24,7 +24,7 @@ if ("geolocation" in navigator) {
     });
 
     //check if the current position is within a checkpoint
-    inCircle(currentPosition, locationPolys)
+    inCheckpoint(currentPosition)
   }
 
   // function to run if there is an error getting the current location

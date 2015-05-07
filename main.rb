@@ -1,7 +1,5 @@
 require 'sinatra'
 require 'sinatra/reloader'
-
-
 require_relative 'db_config'
 require_relative 'checkpoint_race_user'
 require_relative 'race'
@@ -23,6 +21,8 @@ after do
 end
 
 get '/' do
+	@race = Race.last
+	@users = @race.users.distinct
   erb :index
 end
 
@@ -39,30 +39,29 @@ get '/race' do
 end
 
 post '/race/new' do
-	@race = Race.create(name: "New Race", created_at: Time.now, ended: false)
-	checkpoints = [
-		CheckpointRaceUser.create(checkpoint_id: 1, race_id: race.id),
-		CheckpointRaceUser.create(checkpoint_id: 2, race_id: race.id),
-		CheckpointRaceUser.create(checkpoint_id: 3, race_id: race.id),
-		CheckpointRaceUser.create(checkpoint_id: 4, race_id: race.id)]
+	# create new race
+	race = Race.create(name: "New Race", created_at: Time.now, ended: false)
+
+	# add the 4 default checkpoints to this race
+	CheckpointRaceUser.create(checkpoint_id: 1, race_id: race.id)
+	CheckpointRaceUser.create(checkpoint_id: 2, race_id: race.id)
+	CheckpointRaceUser.create(checkpoint_id: 3, race_id: race.id)
+	CheckpointRaceUser.create(checkpoint_id: 4, race_id: race.id)
+
+	# add the current user to this race
+	CheckpointRaceUser.create(race_id: race.id, user_id: current_user.id)
+
 	redirect to '/race'
 end
 
-# a user wants to join a race
-post '/race/join/:lat/:lng' do
+
+post '/race/join' do
 	# make sure they are logged in
-	# redirect to '/login' if !logged_in?
+	redirect to '/login' if !logged_in?
 
-	# Create checkpoint at their location
-	new_checkpoint = Checkpoint.create(
-		name: "#{current_user.name} starting point",
-		latitude: params[:lat],
-		longitude: params[:lng])
-
-	# Mark that checkpoint as reached
+	# Add current user to the current race
 	CheckpointRaceUser.create(
 		user_id: current_user.id,
-		checkpoint_id: new_checkpoint.id,
 		race_id: current_race.id)
 
 	# Redirect to /race
@@ -88,27 +87,25 @@ post '/checkpoints/new' do
 		redirect to '/checkpoints'
 end
 
+# Current race checkpoints
 get '/api/checkpoints' do
 	content_type :json
-	checkpoints = Checkpoint.all
+	checkpoints = current_race.checkpoints.distinct
 	checkpoints.to_json
 end
 
-# Get unique checkpoints for race
-get '/api/get_race_cp/:race_id' do
+# Current user completed checkpoints
+get '/api/checkpoints/completed' do
 	content_type :json
-	race = Race.find(params[:race_id])
-	Race.joins(:checkpoints)
-	checkpoints = race.checkpoints.uniq
+	checkpoints = current_user.checkpoints.distinct # shouldn't need distinct in real life
 	checkpoints.to_json
 end
 
-get '/api/get_user_cp/:user_id' do
-	content_type :json
-	user = User.find(params[:user_id])
-	User.joins(:checkpoints)
-	checkpoints = user.checkpoints
-	checkpoints.to_json
+post '/api/checkpoints/:id/new' do
+	newCP = CheckpointRaceUser.create(
+		user_id: current_user.id,
+		checkpoint_id: params[:id],
+		race_id: current_race.id)
 end
 
 # LOGIN

@@ -28,25 +28,6 @@ function drawCircle(point, radius, dir) {
   return extp;
 }
 
-// function to check whether a specific point is in any of our destination location circles
-function inCircle(point, polys) {
-  $.each(polys, function(index, value) {
-
-    // if the point is in a waypoint
-    if (google.maps.geometry.poly.containsLocation(point, value)) {
-
-      // remove the checkpoint
-      value.setMap(null);
-
-      // display a message
-      alert('Congratulations, you reached a checkpoint!')
-    } else {
-      return false;
-    }
-  });
-
-}
-
 function initialize() {
   // Create the map defaults.
   var mapOptions = {
@@ -57,9 +38,6 @@ function initialize() {
   // declare the map as the 'map-canvas' div
   map = new google.maps.Map(document.getElementById('map-canvas'),
       mapOptions);
-
-  // setting an empty array for checkpoints
-  var checkpoints = [];
 
   // get the checkpoints from the api
   $.ajax({
@@ -76,7 +54,8 @@ function initialize() {
         fillColor: '#0000FF',
         fillOpacity: 0.7,
         map: map,
-        paths: drawCircle(new google.maps.LatLng(value.latitude, value.longitude),.03,1)
+        paths: drawCircle(new google.maps.LatLng(value.latitude, value.longitude),.03,1),
+        id: value.id
       })
 
       // show the new circle on the map
