@@ -3,12 +3,20 @@
 	<script src="javascripts/checkpoints.js"></script>
 	<script src="javascripts/geolocation.js"></script>
 
-	<div id="whole-page">
+	<div id="Game-page">
+		  <div id="Main-Header-DIV" class="row">
+		    <header class="main-Header-DIV-Header small-8 small-offset-2 medium-4 medium-offset-4 columns">
+		      <object type="image/svg+xml" data="img/HorizonsLogo_OneColour.svg" class="logo">
+		        Team Aslan&#39;s Horizons <!-- fallback image in CSS -->
+		      </object>
+		    </header>
+		  </div>
 		<div id="map-canvas"></div>
-		<div id="container">
-			<div class="row">
+		<div id="GameDetails-Container">
+			<div class="inGame-RELforCheckpointDIV row">
 
 	<!-- display map stuff if there is a race running -->
+
 				<!-- Size Classes: [small medium large xlarge expand] -->
 				<a href="#" data-reveal-id="myModal" class="small-4 columns hide-for-medium-up menu-icon">MENU</a>
 				<div id="myModal" class="reveal-modal" data-reveal>
@@ -17,19 +25,23 @@
 					<button class="btnLogout">Log Out</button>
 					<a class="close-reveal-modal">&#215;</a>
 				</div>
-				<div class="timebox medium-6 columns hide-for-small-only">
-					<p class="username">MattCameron</p>
-					<p class="timer">00:00:00</p>
+				<div class="timebox medium-5 columns hide-for-small-only">
+					<h2 class="username-InGame"><span class="status-InGame"></span> MattCameron</h2>
+					<h1 class="timer-InGame">00:00:00</h1>
 				</div>
-				<div class="small-8 medium-4 columns">
-					<p class="checkpoint">Checkpoints <span class="tally">4/6</span></p>
-					<div class="progress success round">
-						<span class="meter" style="width: 50%"></span>
+				<div class="divBoxCheckpoint-Container small-8 medium-6 columns">
+
+					<div class="divBoxCheckpoint">
+						<h5 class="inGame-Checkpoint">Checkpoints <span class="tally">4/6</span></h5>
+						<div class="progress progress-InGame success round">
+							<span class="meter inGame-Meter" style="width: 50%"></span>
+						</div>
 					</div>
+
 				</div>
 
-				<div class="medium-2 columns hide-for-small-only">
-					<button class="btnLogout">Log Out</button>
+				<div class="medium-1 columns hide-for-small-only">
+					<button class="btnLogout-inGame"><span class="fa fa-power-off"></span></button>
 				</div>
 			</div>
 		</div>
