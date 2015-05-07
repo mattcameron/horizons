@@ -25,6 +25,8 @@ function inCheckpoint(point) {
         method: 'post'
       }).done(function() {
 
+        //  get user & race checkpoints, compare, then update tally
+        checkProgress();
         // check if this was the last checkpoint
         allCheckpoints();
       });
@@ -74,11 +76,11 @@ var userCheckpoints;
 var setMeter = function() {
 	setTimeout(function(){
 		$('.inGame-Meter').css('width', (userCheckpoints/currentRaceCheckpoints*100)+"%")},
-		500
+		700
 	);
 	setTimeout(function(){
 		$('.tally').html(userCheckpoints + "/" + currentRaceCheckpoints)},
-		500
+		700
 	);
 }
 
