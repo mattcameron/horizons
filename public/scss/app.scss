@@ -1,0 +1,320 @@
+@import "settings";
+@import "foundation";
+
+// Or selectively include components
+// @import
+//   "foundation/components/accordion",
+//   "foundation/components/alert-boxes",
+//   "foundation/components/block-grid",
+//   "foundation/components/breadcrumbs",
+//   "foundation/components/button-groups",
+//   "foundation/components/buttons",
+//   "foundation/components/clearing",
+//   "foundation/components/dropdown",
+//   "foundation/components/dropdown-buttons",
+//   "foundation/components/flex-video",
+//   "foundation/components/forms",
+//   "foundation/components/grid",
+//   "foundation/components/inline-lists",
+//   "foundation/components/joyride",
+//   "foundation/components/keystrokes",
+//   "foundation/components/labels",
+//   "foundation/components/magellan",
+//   "foundation/components/orbit",
+//   "foundation/components/pagination",
+//   "foundation/components/panels",
+//   "foundation/components/pricing-tables",
+//   "foundation/components/progress-bars",
+//   "foundation/components/reveal",
+//   "foundation/components/side-nav",
+//   "foundation/components/split-buttons",
+//   "foundation/components/sub-nav",
+//   "foundation/components/switches",
+//   "foundation/components/tables",
+//   "foundation/components/tabs",
+//   "foundation/components/thumbs",
+//   "foundation/components/tooltips",
+//   "foundation/components/top-bar",
+//   "foundation/components/type",
+//   "foundation/components/offcanvas",
+//   "foundation/components/visibility";
+
+$Global-Full-Height: 100%;
+$Global-Full-Width: 100%;
+$Global-Position-Relative: relative;
+$Global-Text-Uppercase: uppercase;
+
+html {
+	height: $Global-Full-Height;
+	max-height: $Global-Full-Height;
+}
+
+main {
+	height: $Global-Full-Height;
+	width: $Global-Full-Width;
+}
+
+#Main-Header-DIV {
+	position: $Global-Position-Relative;
+	top: 25px;
+}
+
+#Main-Footer-DIV {
+	position: $Global-Position-Relative;
+	bottom: 0;
+} 
+
+.main-Header-DIV-Header {
+	position: absolute;
+}
+
+.main-Footer-DIV-Footer {
+	position: absolute;
+	bottom: 0;
+	color: $ghost;
+	width: 100%;
+}
+
+.main-Footer-DIV-Footer p {
+	font-size: 12px;
+	padding-top: 10px;
+}
+
+.main-Footer-DIV-Footer a {
+	color: $horizons-yellow;
+}
+
+#Horizons-Page-1 {
+	height: $Global-Full-Height;
+	width: $Global-Full-Width;
+	overflow: hidden;
+	background-image: url('../img/HRZ_Page1_BG.jpg');
+	background-position: center;
+	background-size: cover;
+}
+
+.pageContentWrapper {
+	margin-top: 160px;
+}
+
+
+.horizon-Page-Blurb {
+	position: $Global-Position-Relative;
+}
+
+.horizon-Page-Blurb:before {
+	content: " ";
+	height: 6px;
+	width: 90px;
+	position: absolute;
+	top: 0;
+	display: block;
+	background: #2ea5b9;
+}
+
+.horizon-Page-Blurb h2{
+	font-family: $font-family-serif;
+	font-size: 44px;
+	line-height: 1.25;
+	margin-top: 25px;
+	text-transform: $Global-Text-Uppercase;
+	color: $ghost;
+}
+
+.horizon-Page-Blurb p {
+	font-weight: 700;
+	font-size: 20px;
+	color: $ghost;
+}
+
+.horizon-Page-Blurb-Secondary-Link:before {
+	content: "\f068 ";
+	font-family: "FontAwesome";
+	color: #f9ce55;
+	margin-right: 8px;
+	font-size: 12px;
+}
+
+.horizon-Page-Blurb-Secondary-Link {
+	font-weight: 700;
+	font-size: 18px;
+	color: $ghost;
+	text-transform: $Global-Text-Uppercase;
+}
+
+.horizon-Page-Race-Status h4 {
+	font-family: $font-family-serif;
+	text-transform: $Global-Text-Uppercase;
+	color: $ghost;
+	font-size: 28px;
+	margin-top: 0;
+	border-bottom: 1px solid rgba(250,250,250,.90);
+
+}
+
+.horizon-Page-Race-Status h4 i {
+	margin-right: 10px;
+}
+
+.horizon-Page-Race-Status ul {
+	margin: 0 0 50px 0;
+	line-height: 0;
+  	padding: 0;
+}
+
+
+.horizon-Page-Race-Columns h5, .horizon-Page-Race-Columns-Title h5 {
+	color: $ghost;
+	font-size: 1em;
+}
+
+.horizon-Page-Race-Columns-Title h5 {
+	text-transform: $Global-Text-Uppercase;
+	font-weight: 700;
+}
+
+.horizon-Page-Race-Columns h5 i {
+	margin-right: 5px;
+}
+
+.horizon-Page-Race-Columns-TimeLapse {
+	text-align: center;
+}
+
+.progress {
+  background-color: transparent;
+  border: 1px solid white;
+  height: 1rem;
+  width: 66%;
+  margin: 6px 10px 0 0;
+  float: left;
+  border-radius: 4px;
+}
+
+.progress .meter {
+	width: 60%;
+	background: $ghost;
+}
+
+
+.main-btn {
+	text-transform: uppercase;
+	font-weight: 700;
+}
+
+.howToPlay-btn {
+	color: $ghost;
+	font-size: 1.25rem;
+	padding: 1.125rem 2.25rem 1.1875rem 2.25rem;
+}
+
+.aslan-logo {
+	height: 30px;
+}
+
+.accessHorizons-LoginSection h4, .accessHorizons-RegisterSection h4 {
+	font-family: $font-family-serif;
+	text-transform: uppercase;
+	color: $horizons-dark;
+	margin-bottom: 20px;
+}
+
+.accessHorizons-RegisterSection{
+  border-top: 1px dashed #a4a4a4;
+  padding-top: 35px;
+  margin-top: 30px;
+  position: relative;
+}
+
+.accessHorizons-RegisterSection:before {
+	content: " or " ;
+	color: $ghost;
+	width: 35px;
+	height: 35px;
+	border-radius: 100%;
+	text-align: center;
+	line-height: 2;
+	display: block;
+	background: #a4a4a4;
+	position: absolute;
+	top: -17px;
+	left: 48%;
+}
+
+span.prefix, label.prefix {
+	font-size: 18px;
+}
+.accessHorizons-forgotPassword {
+  text-align: right;
+  padding-top: 19px;
+  font-size: 12px;
+}
+
+.accessHorizons-LogInBTN {
+	text-align: right;
+}
+
+@media #{$small-only} {
+	.horizon-Page-Blurb{
+		display: none;
+	}
+
+	.aslan-logo {
+		height: 40px;
+	}
+
+	.horizon-Page-Race-Columns h5 {
+		font-size: .725em;
+	}
+
+	.progress {
+		width: 72%;
+		margin-top: 4px;
+		height: .75rem;
+	}
+
+	.horizon-Page-Race-Status ul {
+		margin-bottom: 30px;
+	}
+
+	.howToPlay-btn {
+		text-align: center;
+	}
+
+}
+
+
+/* DELETE FOR FINAL DELIVERY */
+.TEMPORARY-COLOR-1 {
+	color: #f06eaa;
+}
+
+.TEMPORARY-COLOR-2 {
+	color: #e9f06e;
+}
+
+.TEMPORARY-COLOR-3 {
+	color: #6e90f0;
+}
+
+.TEMPORARY-COLOR-4 {
+	color: #f4b045;
+}
+
+.TEMPORARY-COLOR-5 {
+	color: #f52564;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+

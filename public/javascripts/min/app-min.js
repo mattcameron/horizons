@@ -1,0 +1,1 @@
+$(document).foundation(),$("#Horizons-Page-1").mousemove(function(o){var n=-1*o.pageX/25;$(this).css("background-position",n+"px ")});

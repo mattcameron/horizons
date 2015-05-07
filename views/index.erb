@@ -1,77 +1,191 @@
-
-<h1>Home Page</h1>
-
-
-<!-- Triggers the modals -->
-<a href="#" data-reveal-id="firstModal" class="radius button">Login</a>
-
-<!-- Reveal Modals begin -->
-<div id="firstModal" class="reveal-modal" data-reveal aria-labelledby="firstModalTitle" aria-hidden="true" role="dialog">
-			<form action="/session" method="post">
-
-				<label for="email">Email Address</label>
-				<input type="email" name="email" placeholder="dom@littlepony.com">
-
-				<label for="password">Password</label>
-				<input type="password" name="password">
-
-				<input type="submit" value="Log In">
-			</form>
-  <p><a href="#" data-reveal-id="secondModal" class="secondary button">Register</a></p>
-  <a class="close-reveal-modal" aria-label="Close">&#215;</a>
-</div>
-
-<div id="secondModal" class="reveal-modal" data-reveal aria-labelledby="secondModalTitle" aria-hidden="true" role="dialog">
-		<form action="/signup" method="post">
-			<label for="username">Username</label>
-			<input type="text" name="username" placeholder="DomIsCool">
-
-			<label for="email">Email Address</label>
-			<input type="email" name="email" placeholder="dom@littlepony.com">
-
-			<label for="password">Password</label>
-			<input type="password" name="password">
-
-			<input type="submit" value="Log In">
-		</form>
-  <a class="close-reveal-modal" aria-label="Close">&#215;</a>
-</div>
-
-<!-- Reveal Modals end -->
-
-<% if logged_in? %>
-	<p>Logged In as <%= current_user.user_name %></p>
-<% else %>
-	<p>Not Logged In</p>
-<% end %>
-
-
-<% if race_running? %>
-	<form action="/race/join" method="post">
-		<input type="submit" value="Join Race">
-	</form>
-
-	<h2>Current Race (<%= current_race.id %>)</h2>
-<% else %>
-	<form action="/race/new" method="post">
-		<input type="submit" value="New Race">
-	</form>
-	<h2>Last Race</h2>
-<% end %>
-
-
-<!-- List Users of the most recent race -->
-<% @users.each do |user| %>
-
-<div class="row">
-  <div class="small-4 columns"><%= user.user_name %></div>
-  <div class="small-4 columns">
-  	<%= user.checkpoint_race_users.where(["race_id = ? and checkpoint_id IS NOT NULL", @race.id]).count %>/<%= @race.checkpoints.distinct.count %>
+  <!-- Header -->
+  <div id="Main-Header-DIV" class="row">
+    <header class="main-Header-DIV-Header small-8 small-offset-2 medium-4 medium-offset-4 columns">
+      <object type="image/svg+xml" data="img/horizonlogo.svg" class="logo">
+        Team Aslan&#39;s Horizons <!-- fallback image in CSS -->
+      </object>
+    </header>
   </div>
-  <div class="small-4 columns">Time</div>
-</div>
-<% end %>
+
+  <main role="main">
+    <!-- Section 1 -->
+    <section id="Horizons-Page-1">
+      <div class="pageContentWrapper">
+        <div class="row">
+
+          <section class="horizon-Page-Blurb medium-5 columns">
+            <h2>Neque prono quisquam est qui dolorem</h2>
+            <p>Lorem ipsum dolor sit, consectetur adipiscing elit Integer suscipit mauri et sapien porta.</p>
+            <h5><a href="#" class="horizon-Page-Blurb-Secondary-Link">More info</a></h5>
+          </section>
+
+          <section class="horizon-Page-Race-Status medium-7 columns">
+            <h4><i class="fi-graph-bar"></i>
+              <% if race_running? %>
+              Current Race
+              <% else %>
+              Last Race
+              <% end %>
+            </h4>
+
+            <ul>
+
+              <!-- Table FRONT Title -->
+              <li class="row">
+                <div class="horizon-Page-Race-Columns-Title small-4 columns">
+                  <h5>Username</h5>
+                </div>
+                <div class="horizon-Page-Race-Columns-Title small-4 columns">
+                  <h5>Checkpoints</h5>
+                </div>
+                <div class="horizon-Page-Race-Columns-Title horizon-Page-Race-Columns-TimeLapse small-4 columns">
+                  <h5>Timelapse</h5>
+                </div>
+              </li>
 
 
+              <!-- List Users of the most recent race -->
+              <% @users.each do |user| %>
+              <li class="row">
+                <div class="horizon-Page-Race-Columns small-4 columns">
+                  <h5><i class="TEMPORARY-COLOR-5 fa fa-circle"></i> <%= user.user_name %></h5>
+                </div>
+                <div class="horizon-Page-Race-Columns small-4 columns">
+
+                  <div class="progress">
+                    <span class="meter"></span>
+                  </div>
+
+                  <h5><%= user.checkpoint_race_users.where(["race_id = ? and checkpoint_id IS NOT NULL", @race.id]).count %>/<%= @race.checkpoints.distinct.count %></h5>
+                </div>
+                <div class="horizon-Page-Race-Columns horizon-Page-Race-Columns-TimeLapse small-4 columns">
+                  <h5>02:20:40</h5>
+                </div>
+              </li>
+
+              <% end %>
+            </ul>
+
+            <% if race_running? %>
+              <form action="/race/join" method="post">
+                <input type="submit" class="main-btn button radius large medium-6 column" value="Join Race">
+              </form>
+            <% else %>
+              <form action="/race/new" method="post">
+                <input type="submit" class="main-btn button radius large medium-6 column" value="New Race">
+              </form>
+            <% end %>
+
+            <!-- <a role="button" href="#" data-reveal-id="accessHorizons" class="main-btn button radius large medium-6 column">Join the race</a> -->
+            <a role="button" href="#" class="howToPlay-btn medium-6 column">How to play</a>
+
+          </section>
 
 
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <div id="Main-Footer-DIV" class="row">
+    <footer class="main-Footer-DIV-Footer">
+      <div class="medium-5 columns">
+        <object type="image/svg+xml" data="img/teamaslanlogo.svg" class="aslan-logo">
+        Team Aslan<!-- fallback image in CSS -->
+        </object>
+      </div>
+      <div class="medium-7 columns end">
+        <p>&copy; 2015 Team Aslan. A <a href="#" > General Assembly</a> Project.  <a href="#" >Terms &amp; Conditions</a> | <a href="#" >Privacy Policy</a> | <a href="#" >Contact</a></p>
+      </div>
+    </footer>
+  </div>
+
+  <!-- Login or Register MODAL -->
+  <div id="accessHorizons" class="reveal-modal small" data-reveal aria-labelledby="accessHorizonsTitle" aria-hidden="true" role="dialog">
+
+    <section class="accessHorizons-LoginSection">
+
+        <h4>Login to Horizons</h4>
+
+        <form action="/session" method="post">
+
+          <div class="row collapse">
+            <div class="small-3 large-2 columns">
+              <span class="prefix"><i class="fi-mail"></i></span>
+            </div>
+            <div class="small-9 large-10 columns">
+              <input type="email" name="email" placeholder="Email address">
+            </div>
+          </div>
+
+          <div class="row collapse">
+            <div class="small-3 large-2 columns">
+              <span class="prefix"><i class="fi-key"></i></span>
+            </div>
+            <div class="small-9 large-10 columns">
+              <input type="password" name="password" placeholder="Password">
+            </div>
+          </div>
+          <div class="row collapse">
+            <div class="accessHorizons-forgotPassword small-7 large-8 columns">
+              <a href="#">Forgot your password?</a>
+            </div>
+            <div class="accessHorizons-LogInBTN small-5 large-4 columns">
+              <input type="submit" class="main-btn button radius" value="Log In">
+            </div>
+          </div>
+
+      </form>
+    </section>
+
+    <section class="accessHorizons-RegisterSection">
+
+      <h4>Register to Horizons</h4>
+
+      <form action="/session" method="post">
+
+          <div class="row collapse">
+            <div class="small-3 large-2 columns">
+              <span class="prefix"><i class="fi-torso"></i></span>
+            </div>
+            <div class="small-9 large-10 columns">
+              <input type="text" name="username" placeholder="Username">
+            </div>
+          </div>
+
+          <div class="row collapse">
+            <div class="small-3 large-2 columns">
+              <span class="prefix"><i class="fi-mail"></i></span>
+            </div>
+            <div class="small-9 large-10 columns">
+              <input type="email" name="email" placeholder="Email address">
+            </div>
+          </div>
+
+          <div class="row collapse">
+            <div class="small-3 large-2 columns">
+              <span class="prefix"><i class="fi-key"></i></span>
+            </div>
+            <div class="small-9 large-10 columns">
+              <input type="password" name="password" placeholder="Password">
+            </div>
+          </div>
+          <div class="row collapse">
+            <div class="accessHorizons-forgotPassword small-7 large-8 columns">
+
+            </div>
+            <div class="accessHorizons-LogInBTN small-5 large-4 columns">
+              <input type="submit" class="main-btn button radius" value="Register">
+            </div>
+          </div>
+
+      </form>
+    </section>
+
+
+  <a class="close-reveal-modal" aria-label="Close">&#215;</a>
+  </div>
+
+  </body>
+</html>

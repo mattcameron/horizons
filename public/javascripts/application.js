@@ -53,3 +53,11 @@ function allCheckpoints() {
   })
 
 }
+
+
+// Parallax stuff
+
+$('#Horizons-Page-1').mousemove(function(e){
+    var amountMovedX = (e.pageX * -1 / 25);
+    $(this).css('background-position', amountMovedX + 'px ' );
+});
