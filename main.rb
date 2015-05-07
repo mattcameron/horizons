@@ -108,6 +108,7 @@ post '/api/checkpoints/:id/new' do
 		race_id: current_race.id)
 end
 
+
 # Current race
 get '/api/race' do
 
@@ -115,6 +116,10 @@ get '/api/race' do
 	created_at = current_race.created_at
 	ms_from_epoch = (created_at.to_i * 1000)
 	ms_from_epoch.to_json
+end
+
+post '/api/gameover' do
+	current_race.update( ended: true )
 end
 
 # LOGIN
