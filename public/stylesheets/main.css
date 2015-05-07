@@ -6344,6 +6344,8 @@ th.hide-for-touch {
 @media not print {
   .show-for-print {
     display: none !important; } }
+=======
+>>>>>>> 9583468362976baee70c006f895f39988607d5be
 html {
   height: 100%;
   max-height: 100%; }
