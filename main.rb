@@ -181,30 +181,16 @@ helpers do
 	end
 
 	def current_user_checkpoints_hit
-		current_user.checkpoint_race_users.where("race_id = #{current_race.id} and checkpoint_id IS NOT NULL").uniq
+		data = current_user.checkpoint_race_users.where("race_id = #{current_race.id} and checkpoint_id IS NOT NULL").uniq
+		checkpoints = data.map { |row|
+			Checkpoint.find(row[:checkpoint_id])
+		}
 	end
 
 	def current_user_checkpoints_left
-		# convert info into arrays with just checkpoint ids
-		cp_hit_ids = []
-		current_user_checkpoints_hit.each { |checkpoint|
-			cp_hit_ids.push(checkpoint[:checkpoint_id])
-		}
-
-		rc_cp_ids = []
-		current_race_checkpoints.each { |checkpoint|
-		rc_cp_ids.push(checkpoint[:id])
-		}
-
-		# pull out the checkpoints which haven't been hit yet
-		checkpoints_remaining = rc_cp_ids.select { |checkpoint_id|
-			!cp_hit_ids.include? checkpoint_id
-		}
-
-		# return those Checkpoints
-		checkpoints_remaining.map { |checkpoint_id|
-			Checkpoint.find(checkpoint_id)
-		 }
+		current_race_checkpoints.select do |checkpoint|
+			!current_user_checkpoints_hit.include? checkpoint
+		end
 	end
 end
 
