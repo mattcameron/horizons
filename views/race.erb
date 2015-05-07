@@ -1,31 +1,46 @@
-<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?libraries=geometry"></script>
-<script src="javascripts/checkpoints.js"></script>
-<div id="whole-page">
-	<div id="map-canvas"></div>
-	<div id="container">
-		<div class="row">
-			<!-- Size Classes: [small medium large xlarge expand] -->
-			<a href="#" data-reveal-id="myModal" class="small-4 columns hide-for-medium-up menu-icon">MENU</a>
-			<div id="myModal" class="reveal-modal" data-reveal>
-				<p class="username">MattCameron</p>
-				<p class="timer">00:00:00</p>
-				<button class="btnLogout">Log Out</button>
-				<a class="close-reveal-modal">&#215;</a>
-			</div>
-			<div class="timebox medium-6 columns hide-for-small-only">
-				<p class="username">MattCameron</p>
-				<p class="timer">00:00:00</p>
-			</div>
-			<div class="small-8 medium-4 columns">
-				<p class="checkpoint">Checkpoints <span class="tally">4/6</span></p>
-				<div class="progress success round">
-					<span class="meter" style="width: 50%"></span>
+<% if race_running? %>
+	<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?libraries=geometry"></script>
+	<script src="javascripts/checkpoints.js"></script>
+	<script src="javascripts/geolocation.js"></script>
+
+	<div id="whole-page">
+		<div id="map-canvas"></div>
+		<div id="container">
+			<div class="row">
+
+	<!-- display map stuff if there is a race running -->
+				<!-- Size Classes: [small medium large xlarge expand] -->
+				<a href="#" data-reveal-id="myModal" class="small-4 columns hide-for-medium-up menu-icon">MENU</a>
+				<div id="myModal" class="reveal-modal" data-reveal>
+					<p class="username">MattCameron</p>
+					<p class="timer">00:00:00</p>
+					<button class="btnLogout">Log Out</button>
+					<a class="close-reveal-modal">&#215;</a>
 				</div>
-			</div>
-			
-			<div class="medium-2 columns hide-for-small-only">
-				<button class="btnLogout">Log Out</button>
+				<div class="timebox medium-6 columns hide-for-small-only">
+					<p class="username">MattCameron</p>
+					<p class="timer">00:00:00</p>
+				</div>
+				<div class="small-8 medium-4 columns">
+					<p class="checkpoint">Checkpoints <span class="tally">4/6</span></p>
+					<div class="progress success round">
+						<span class="meter" style="width: 50%"></span>
+					</div>
+				</div>
+
+				<div class="medium-2 columns hide-for-small-only">
+					<button class="btnLogout">Log Out</button>
+				</div>
 			</div>
 		</div>
 	</div>
- <script src="javascripts/geolocation.js"></script>
+
+<!-- otherwise, tell them to start a new race -->
+<% else %>
+	<h1>This Race is over!! :( </h1>
+
+	<h3>Time to start a new one</h3>
+	<form action="/race/new" method="post">
+		<input type="submit" value="New Race">
+	</form>
+<% end %>

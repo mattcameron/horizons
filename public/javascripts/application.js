@@ -32,8 +32,17 @@ function allCheckpoints() {
     url: '/api/checkpoints/completed',
     method: 'get'
   }).done(function(checkpoints) {
-    // the user has won and the game is over
+    // check if the user has hit all of the checkpoints
     if ( checkpoints.length === locationPolys.length ) {
+
+      //end the game
+      $.ajax({
+        url: '/api/gameover',
+        method: 'post'
+      }).done(function() {
+        console.log('done')
+    });
+
     alert('WOOOO HOOOOO!!! YOU WON THE GAME!')
   } else {
     // game is still running

@@ -103,6 +103,10 @@ post '/api/checkpoints/:id/new' do
 		race_id: current_race.id)
 end
 
+post '/api/gameover' do
+	current_race.update( ended: true )
+end
+
 # LOGIN
 post '/signup' do
 	@user = User.create( user_name: params[:username], email: params[:email], password: params[:password])

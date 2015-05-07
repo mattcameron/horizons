@@ -51,7 +51,7 @@
 		<input type="submit" value="Join Race">
 	</form>
 
-	<h2>Current Race</h2>
+	<h2>Current Race (<%= current_race.id %>)</h2>
 <% else %>
 	<form action="/race/new" method="post">
 		<input type="submit" value="New Race">
@@ -65,7 +65,9 @@
 
 <div class="row">
   <div class="small-4 columns"><%= user.user_name %></div>
-  <div class="small-4 columns"><%= user.checkpoints.distinct.count %>/<%= @race.checkpoints.distinct.count %></div>
+  <div class="small-4 columns">
+  	<%= user.checkpoint_race_users.where("race_id = #{@race.id} and checkpoint_id IS NOT NULL").count %>/<%= @race.checkpoints.distinct.count %>
+  </div>
   <div class="small-4 columns">Time</div>
 </div>
 <% end %>
