@@ -19,6 +19,14 @@ function inCheckpoint(point) {
         // check if this was the last checkpoint
         allCheckpoints();
       });
+
+        // remove this checkpoint from the locationPolys array
+        locationPolys.splice(index, 1);
+
+        // remove the marker from the array and the map
+        checkpointMarkers[index].setMap(null);
+        checkpointMarkers.splice(index, 1);
+
       return;
     };
   });
@@ -36,12 +44,7 @@ function allCheckpoints() {
     if ( checkpoints.length === locationPolys.length ) {
 
       //end the game
-      $.ajax({
-        url: '/api/gameover',
-        method: 'post'
-      }).done(function() {
-        console.log('done')
-    });
+      gameOver();
 
     alert('WOOOO HOOOOO!!! YOU WON THE GAME!')
   } else {
@@ -52,6 +55,14 @@ function allCheckpoints() {
 
   })
 
+}
+
+
+function gameOver() {
+  $.ajax({
+        url: '/api/gameover',
+        method: 'post'
+      });
 }
 
 var currentRaceCheckpoints;
@@ -73,7 +84,7 @@ var setMeter = function() {
 	);
 }
 
-//get the amount of current active race checkpoints 
+//get the amount of current active race checkpoints
 var getRaceCheckpoints = function() {
 		$.ajax({
 	    url: "/api/checkpoints",
@@ -109,7 +120,7 @@ var checkProgress = function() {
 // 	  	raceCreatedAt = data;
 // 	  	elapsedTime = milliseconds - raceCreatedAt + 36000000;
 // 	  });
-	  
+
 // }
 
 

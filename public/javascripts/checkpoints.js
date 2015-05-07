@@ -1,6 +1,7 @@
 
 var bounds = new google.maps.LatLngBounds();
 var locationPolys = [];
+var checkpointMarkers = [];
 var map;
 
 
@@ -56,8 +57,12 @@ function initialize() {
             optimized: false,
       icon: "img/mainMarker.gif",
       map: map,
-      title: 'Checkpoint!'
+      title: 'Checkpoint!',
+      id: index
     });
+
+      // push the marker into the checkpointMarkers array so we can access it later
+      checkpointMarkers.push(newCheckpointMarker)
 
       // create a transparent radius for the checkpoint
       var newPoly = new google.maps.Polygon({

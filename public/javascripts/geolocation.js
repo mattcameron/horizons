@@ -7,8 +7,6 @@ if ("geolocation" in navigator) {
   //function to run each time the current location changes
   function success(position) {
 
-      console.log("New position: " + position.coords.latitude + ', ' + position.coords.longitude);
-
     currentPosition = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
 
     // clear old marker (if there is one)
@@ -31,7 +29,7 @@ if ("geolocation" in navigator) {
 
   // function to run if there is an error getting the current location
   function error() {
-    console.log("There was an error getting your postion")
+    alert("There was an error getting your location.")
   }
 
   // watchPosition options
