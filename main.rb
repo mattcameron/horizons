@@ -20,10 +20,9 @@ after do
 end
 
 get '/' do
-
 	@race = Race.last
 	@users = @race.users.distinct
-	@five_users = @race.users.order(id: :asc).limit(5).uniq
+	@five_users = @race.users.order(id: :asc).limit(6).uniq
   erb :index
 end
 
@@ -36,10 +35,12 @@ get '/login' do
 end
 
 get '/race' do
+
 	erb :race
 end
 
 post '/race/new' do
+	redirect to '/' if !logged_in?
 	# create new race
 	race = Race.create(name: "New Race", created_at: Time.now, ended: false)
 
@@ -58,7 +59,7 @@ end
 
 post '/race/join' do
 	# make sure they are logged in
-	redirect to '/login' if !logged_in?
+	redirect to '/' if !logged_in?
 
 	# Add current user to the current race
 	CheckpointRaceUser.create(
@@ -158,18 +159,17 @@ helpers do
 			User.find_by(id: session[:user_id])
 	end
 
-	def current_race
-		# return the current race, if there is one running
-		if Race.last.ended != true
-			current_race = Race.last
-		else
-			current_race = false
-		end
-		current_race
-	end
+def current_race
+        # return the last race, even if there is not one running
+       current_race = Race.last
+end
 
 	def race_running?
-		!!current_race
-	end
+    if current_race.ended == true
+        return false
+    else
+        return true
+    end
+   end
 end
 
