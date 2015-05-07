@@ -309,21 +309,10 @@ h5.inGame-Checkpoint {
 .btnLogout-inGame:hover {
 	color: #f9ce55;
 }
+
+.colour-marker {
+  color: #f52564; 
+}
 /******************************************/
 
-/* DELETE FOR FINAL DELIVERY */
-.TEMPORARY-COLOR-1 {
-  color: #f06eaa; }
-
-.TEMPORARY-COLOR-2 {
-  color: #e9f06e; }
-
-.TEMPORARY-COLOR-3 {
-  color: #6e90f0; }
-
-.TEMPORARY-COLOR-4 {
-  color: #f4b045; }
-
-.TEMPORARY-COLOR-5 {
-  color: #f52564; }
 

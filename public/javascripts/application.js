@@ -1,3 +1,12 @@
+// Generate random hex colour for markers on index
+function getRandomColour() {
+    var letters = '123456789abcdef'.split('');
+    var color = '#';
+    for (var i = 0; i < 6; i++) {
+        color += letters[Math.floor(Math.random() * 16)];
+    }
+    return color;
+}
 
 // function to check whether a specific point is within any of our checkpoints
 function inCheckpoint(point) {
@@ -134,6 +143,10 @@ var checkProgress = function() {
 $(document).ready(function(){
 
 	setInterval(checkProgress(), 10000);
+
+	  $('.colour-marker').each(function() {
+        $(this).css('color', getRandomColour());
+    });
 
 	// getCreatedAtTime()
 
