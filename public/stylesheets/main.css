@@ -40,6 +40,10 @@
 	margin-top: 2em;
 }
 
+.user_meter {
+	width: 0%;
+}
+
 /******************************************/
 
 meta.foundation-version {
