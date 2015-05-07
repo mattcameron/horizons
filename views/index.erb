@@ -45,25 +45,26 @@
 
 
               <!-- List Users of the most recent race -->
-              <% @users.each do |user| %>
-              <li class="row">
-                <div class="horizon-Page-Race-Columns small-4 columns">
-                  <h5><i class="TEMPORARY-COLOR-5 fa fa-circle"></i> <%= user.user_name %></h5>
-                </div>
-                <div class="horizon-Page-Race-Columns small-4 columns">
+                <% @five_users.each do |user| %>
 
-                  <div class="progress">
-                    <span class="meter"></span>
+                <li class="row">
+                  <div class="horizon-Page-Race-Columns small-4 columns">
+                    <h5><i class="colour-marker fa fa-circle"></i> <%= user.user_name %></h5>
                   </div>
+                  <div class="horizon-Page-Race-Columns small-4 columns">
 
-                  <h5><%= user.checkpoint_race_users.where(["race_id = ? and checkpoint_id IS NOT NULL", @race.id]).count %>/<%= @race.checkpoints.distinct.count %></h5>
-                </div>
-                <div class="horizon-Page-Race-Columns horizon-Page-Race-Columns-TimeLapse small-4 columns">
-                  <h5>02:20:40</h5>
-                </div>
-              </li>
+                    <div class="progress">
+                      <span class="meter" style="width: <%= (user.checkpoints.count.to_f/@race.checkpoints.distinct.count)*100 %>%"></span>
+                    </div>
 
-              <% end %>
+                    <h5><%= user.checkpoint_race_users.where(["race_id = ? and checkpoint_id IS NOT NULL", @race.id]).count %>/<%= @race.checkpoints.distinct.count %></h5>
+                  </div>
+                  <div class="horizon-Page-Race-Columns horizon-Page-Race-Columns-TimeLapse small-4 columns">
+                    <h5>02:20:40</h5>
+                  </div>
+                </li>
+
+              <% end %> 
             </ul>
 
             <% if race_running? %>
