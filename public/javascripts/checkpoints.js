@@ -54,9 +54,9 @@ function initialize() {
       newCheckpointMarker = new google.maps.Marker({
       position: thisLatLng,
             optimized: false,
-      icon: "img/checkPointsMarker.gif",
+      icon: "img/mainMarker.gif",
       map: map,
-      title: 'My Current Position!'
+      title: 'Checkpoint!'
     });
 
       // create a transparent radius for the checkpoint

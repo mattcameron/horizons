@@ -21,7 +21,7 @@ if ("geolocation" in navigator) {
       position: currentPosition,
       map: map,
       optimized: false,
-      icon: "img/mainMarker.gif",
+      icon: "img/checkPointsMarker.gif",
       title: 'My Current Position!'
     });
 
