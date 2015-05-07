@@ -1,11 +1,12 @@
 require 'sinatra'
 require 'sinatra/reloader'
+require 'pg'
 require_relative 'db_config'
 require_relative 'checkpoint_race_user'
 require_relative 'race'
 require_relative 'user'
 require_relative 'checkpoint'
-require 'pry'
+# require 'pry'
 
 enable :sessions
 
