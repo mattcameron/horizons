@@ -23,7 +23,10 @@
 				<div id="myModal" class="reveal-modal" data-reveal>
 					<p class="username">MattCameron</p>
 					<p class="timer">00:00:00</p>
-					<button class="btnLogout">Log Out</button>
+					<form action="/session" method ="post" >
+						<input type="hidden" name="_method" value="delete">
+						<button class="btnLogout-inGame"><span class="fa fa-power-off"></span></button>
+					</form>
 					<a class="close-reveal-modal">&#215;</a>
 				</div>
 				<div class="timebox medium-5 columns hide-for-small-only">
@@ -33,9 +36,9 @@
 				<div class="divBoxCheckpoint-Container small-8 medium-6 columns">
 
 					<div class="divBoxCheckpoint">
-						<h5 class="inGame-Checkpoint">Checkpoints <span class="tally">4/6</span></h5>
+						<h5 class="inGame-Checkpoint">Checkpoints <span class="tally">0/0</span></h5>
 						<div class="progress progress-InGame success round">
-							<span class="meter inGame-Meter" style="width: 50%"></span>
+							<span class="meter inGame-Meter" style="width: 0%"></span>
 						</div>
 					</div>
 

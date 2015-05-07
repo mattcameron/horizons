@@ -64,7 +64,7 @@ var userCheckpoints;
 // update html/css to show race progress stats for user
 var setMeter = function() {
 	setTimeout(function(){
-		$('.user_meter').css('width', (userCheckpoints/currentRaceCheckpoints*100)+"%")},
+		$('.inGame-Meter').css('width', (userCheckpoints/currentRaceCheckpoints*100)+"%")},
 		500
 	);
 	setTimeout(function(){
