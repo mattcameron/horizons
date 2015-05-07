@@ -56,7 +56,6 @@ function allCheckpoints() {
 
 
 // Parallax stuff
-$(document).foundation();
 
 $('#Horizons-Page-1').mousemove(function(e){
     var amountMovedX = (e.pageX * -1 / 25);
