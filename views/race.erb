@@ -20,12 +20,15 @@
 			<div class="small-8 medium-4 columns">
 				<p class="checkpoint">Checkpoints <span class="tally">0/0</span></p>
 				<div class="progress success round">
-					<span class="meter" ></span>
+					<span class="meter user_meter" ></span>
 				</div>
 			</div>
 			
 			<div class="medium-2 columns hide-for-small-only">
-				<button class="btnLogout">Log Out</button>
+				<form action="/session" method ="post" >
+						<input type="hidden" name="_method" value="delete">
+					<button>Log Out</button>
+				</form>
 			</div>
 		</div>
 	</div>
