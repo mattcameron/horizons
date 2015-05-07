@@ -20,8 +20,10 @@ after do
 end
 
 get '/' do
+
 	@race = Race.last
 	@users = @race.users.distinct
+	@five_users = @race.users.order(id: :asc).limit(5).uniq
   erb :index
 end
 
