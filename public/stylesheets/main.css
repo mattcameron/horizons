@@ -6620,20 +6620,17 @@ h5.inGame-Checkpoint {
 }
 
 .btnLogout-inGame {
-	color: #0c1c2d;
-	padding: 0;
-	background: transparent;
-	  font-size: 4em;
+color: #fafafa;
+  background: #0c1c2d;
+  font-size: 1em;
+  line-height: 1.75;
   margin-bottom: 0;
-  margin-top: 45px;
+  margin-top: 50px;
+  text-transform: uppercase;
 }
-.btnLogout-inGame:hover, .btnLogout-inGame:focus {
-	background: transparent;
-}
-
 
 .btnLogout-inGame:hover {
-	color: #f9ce55;
+	color: #0c1c2d;
 }
 /******************************************/
 
