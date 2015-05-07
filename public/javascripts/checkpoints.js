@@ -43,7 +43,7 @@ function initialize() {
 
   // get the checkpoints from the api
   $.ajax({
-    url: "/api/checkpoints",
+    url: "/api/checkpoints/left",
     method: "get"
   }).done(function(data) {
 

@@ -95,11 +95,16 @@ get '/api/checkpoints' do
 	checkpoints.to_json
 end
 
+# Current user checkpoints left to hit
+get '/api/checkpoints/left' do
+	content_type :json
+	current_user_checkpoints_left.to_json
+end
+
 # Current user completed checkpoints
 get '/api/checkpoints/completed' do
 	content_type :json
-	checkpoints = current_user.checkpoints.distinct # shouldn't need distinct in real life
-	checkpoints.to_json
+	current_user_checkpoints_hit.to_json
 end
 
 post '/api/checkpoints/:id/new' do
@@ -112,11 +117,11 @@ end
 
 # Current race
 get '/api/race' do
-
 	content_type :json
-	created_at = current_race.created_at
-	ms_from_epoch = (created_at.to_i * 1000)
-	ms_from_epoch.to_json
+	# created_at = current_race.created_at
+	# ms_from_epoch = (created_at.to_i * 1000)
+	# ms_from_epoch.to_json
+	current_race.to_json
 end
 
 post '/api/gameover' do
@@ -159,17 +164,47 @@ helpers do
 	end
 
 	def current_race
-		# return the current race, if there is one running
-		if Race.last.ended != true
+		# return the last race, even if there is not one running
 			current_race = Race.last
-		else
-			current_race = false
-		end
-		current_race
+	end
+
+	def current_race_checkpoints
+		current_race.checkpoints.uniq
 	end
 
 	def race_running?
-		!!current_race
+		if current_race.ended == true
+			return false
+		else
+			return true
+		end
+	end
+
+	def current_user_checkpoints_hit
+		current_user.checkpoint_race_users.where("race_id = #{current_race.id} and checkpoint_id IS NOT NULL").uniq
+	end
+
+	def current_user_checkpoints_left
+		# convert info into arrays with just checkpoint ids
+		cp_hit_ids = []
+		current_user_checkpoints_hit.each { |checkpoint|
+			cp_hit_ids.push(checkpoint[:checkpoint_id])
+		}
+
+		rc_cp_ids = []
+		current_race_checkpoints.each { |checkpoint|
+		rc_cp_ids.push(checkpoint[:id])
+		}
+
+		# pull out the checkpoints which haven't been hit yet
+		checkpoints_remaining = rc_cp_ids.select { |checkpoint_id|
+			!cp_hit_ids.include? checkpoint_id
+		}
+
+		# return those Checkpoints
+		checkpoints_remaining.map { |checkpoint_id|
+			Checkpoint.find(checkpoint_id)
+		 }
 	end
 end
 
