@@ -6344,8 +6344,8 @@ th.hide-for-touch {
 @media not print {
   .show-for-print {
     display: none !important; } }
-=======
->>>>>>> 9583468362976baee70c006f895f39988607d5be
+
+
 html {
   height: 100%;
   max-height: 100%; }
@@ -6387,7 +6387,7 @@ main {
   background-size: cover; }
 
 .pageContentWrapper {
-  margin-top: 160px; }
+  margin-top: 145px; }
 
 .horizon-Page-Blurb {
   position: relative; }
@@ -6522,9 +6522,6 @@ span.prefix, label.prefix {
 @media only screen and (max-width: 40em) {
   .horizon-Page-Blurb {
     display: none; }
-
-  .aslan-logo {
-    height: 40px; }
 
   .horizon-Page-Race-Columns h5 {
     font-size: .725em; }
