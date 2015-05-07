@@ -6676,21 +6676,67 @@ color: #fafafa;
 		font-size: 14px;
 	}
 }
-/******************************************/
 
-/* DELETE FOR FINAL DELIVERY */
-.TEMPORARY-COLOR-1 {
-  color: #f06eaa; }
+/* NEW */
+#Main-Header-DIV {
+  z-index: 9999;
+}
 
-.TEMPORARY-COLOR-2 {
-  color: #e9f06e; }
+#HowToPlay {
+  background: #7669aa;
+}
 
-.TEMPORARY-COLOR-3 {
-  color: #6e90f0; }
+.howToPlay-Info h4{
+  font-family: "Open Sans", Helvetica, Roboto, Arial, sans-serif;;
+  text-transform: uppercase;
+  color: #fafafa;
+  font-size: 28px;
+  margin-top: 0;
+  border-bottom: 1px solid rgba(250,250,250,.90);
 
-.TEMPORARY-COLOR-4 {
-  color: #f4b045; }
+}
 
-.TEMPORARY-COLOR-5 {
-  color: #f52564; }
+.howToPlay-Info ul {
+  list-style: none;
+  padding: 0;
+  margin: 20px 0 0 0;
+  color: #fafafa;
+}
+
+.howToPlay-Info ul li h3 {
+font-weight: 700;
+  font-size: 20px;
+  color: #FAFAFA;
+}
+
+.howToPlay-Info ul li i{
+  float: left;
+  width: 10%;
+  display: block;
+  background: #645894;
+  height: 40px;
+  text-align: center;
+  font-size: 21px;
+  line-height: 1.95;
+}
+
+.howToPlayList-Right {
+  width: 85%;
+  padding-left: 5%;
+  float: left;
+}
+
+.otherPageContent {
+    top: 145px;
+  position: relative;
+}
+
+.howToPlay-Devices {
+  height: 512px;
+  background: url("../img/devicesamples.png")no-repeat center;
+}
+
+.howToPlay-Devices .main-btn {
+  top: 50%;
+}
 

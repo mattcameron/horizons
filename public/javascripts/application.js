@@ -1,3 +1,13 @@
+$(document).ready(function() {
+    $('#fullpage').fullpage({
+
+        navigation: true,
+        navigationPosition: 'right',
+        
+
+      verticalCentered: false
+    });
+});
 
 // function to check whether a specific point is within any of our checkpoints
 function inCheckpoint(point) {
