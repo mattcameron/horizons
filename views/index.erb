@@ -22,7 +22,7 @@
 </div>
 
 <div id="secondModal" class="reveal-modal" data-reveal aria-labelledby="secondModalTitle" aria-hidden="true" role="dialog">
-		<form action="/session" method="post">
+		<form action="/signup" method="post">
 			<label for="username">Username</label>
 			<input type="text" name="username" placeholder="DomIsCool">
 
@@ -40,7 +40,7 @@
 <!-- Reveal Modals end -->
 
 <% if logged_in? %>
-	<p>Logged In</p>
+	<p>Logged In as <%= current_user.user_name %></p>
 <% else %>
 	<p>Not Logged In</p>
 <% end %>
