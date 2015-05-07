@@ -11,8 +11,6 @@ require_relative 'checkpoint'
 enable :sessions
 
 before do
-	User.joins(:checkpoints)
-	@current_race = current_race
 	@user = current_user
 	@users = User.all
 end
