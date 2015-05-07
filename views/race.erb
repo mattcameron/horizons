@@ -1,5 +1,5 @@
 
-<% if race_running? %>
+<% if logged_in? && race_running? %>
 	<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?libraries=geometry"></script>
 	<script src="javascripts/checkpoints.js"></script>
 	<script src="javascripts/geolocation.js"></script>
