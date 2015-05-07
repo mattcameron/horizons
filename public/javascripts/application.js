@@ -47,12 +47,15 @@ function allCheckpoints() {
 
 var currentRaceCheckpoints;
 var userCheckpoints;
-var elapsedTime;
+
+// var raceCreatedAt;
+// var elapsedTime;
+// var milliseconds = new Date().getTime();
 
 // update html/css to show race progress stats for user
 var setMeter = function() {
 	setTimeout(function(){
-		$('.meter').css('width', (userCheckpoints/currentRaceCheckpoints*100)+"%")},
+		$('.user_meter').css('width', (userCheckpoints/currentRaceCheckpoints*100)+"%")},
 		500
 	);
 	setTimeout(function(){
@@ -87,7 +90,46 @@ var checkProgress = function() {
 	setMeter();
 }
 
+// get created_at time of current race
+// var getCreatedAtTime = function() {
+// 		$.ajax({
+// 	    url: "/api/race",
+// 	    method: "get"
+// 	  }).done(function(data) {
+// 	  	console.log(data);
+// 	  	raceCreatedAt = data;
+// 	  	elapsedTime = milliseconds - raceCreatedAt + 36000000;
+// 	  });
+	  
+// }
+
+
+
+/*covert milliseconds to readable time *****************/
+
+// function msToTime(s) {
+//   var ms = s % 1000;
+//   s = (s - ms) / 1000;
+//   var secs = s % 60;
+//   s = (s - secs) / 60;
+//   var mins = s % 60;
+//   var hrs = (s - mins) / 60;
+
+//   console.log(hrs + ':' + mins + ':' + secs);
+//   return hrs + ':' + mins + ':' + secs;
+// }
+
+/*************************************/
+
 
 $(document).ready(function(){
+
 	setInterval(checkProgress(), 10000);
+
+	// getCreatedAtTime()
+
+	// setTimeout(msToTime(elapsedTime), 3000);
 });
+
+
+
