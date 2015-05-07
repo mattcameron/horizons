@@ -47,18 +47,28 @@ function initialize() {
 
     // creates a new circle for each checkpoint
     $.each(data, function(index, value) {
+      var thisLatLng = new google.maps.LatLng(value.latitude, value.longitude);
+
+      // plot new checkpoint on the map
+      newCheckpointMarker = new google.maps.Marker({
+      position: thisLatLng,
+      map: map,
+      title: 'My Current Position!'
+    });
+
+      // create a transparent radius for the checkpoint
       var newPoly = new google.maps.Polygon({
         strokeColor: '#000000',
         strokeOpacity: 0.8,
         strokeWeight: 0,
         fillColor: '#0000FF',
-        fillOpacity: 0.7,
+        fillOpacity: 0.1,
         map: map,
-        paths: drawCircle(new google.maps.LatLng(value.latitude, value.longitude),.03,1),
+        paths: drawCircle(thisLatLng,.03,1),
         id: value.id
       })
 
-      // show the new circle on the map
+      // plot the new circle on the map
       newPoly.setMap(map);
 
       // push it to our locationPolys array
