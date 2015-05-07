@@ -53,6 +53,8 @@ function initialize() {
       // plot new checkpoint on the map
       newCheckpointMarker = new google.maps.Marker({
       position: thisLatLng,
+            optimized: false,
+      icon: "img/checkPointsMarker.gif",
       map: map,
       title: 'My Current Position!'
     });
@@ -64,7 +66,7 @@ function initialize() {
         strokeWeight: 0,
 
         fillColor: '#2ea5b9',
-        fillOpacity: 0.1,
+        fillOpacity: 0,
         map: map,
         paths: drawCircle(thisLatLng,.03,1),
         id: value.id
