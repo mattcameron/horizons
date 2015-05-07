@@ -3975,7 +3975,7 @@ ul.pagination {
   border-radius: 3px;
   display: none;
   position: absolute;
-  top: 0;
+  top: 95px;
   visibility: hidden;
   width: 100%;
   z-index: 1005;
@@ -3986,7 +3986,7 @@ ul.pagination {
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.4); }
   @media only screen and (max-width: 40em) {
     .reveal-modal {
-      min-height: 100vh; } }
+      min-height: 87vh; } }
   .reveal-modal .column, .reveal-modal .columns {
     min-width: 0; }
   .reveal-modal > :first-child {
@@ -6631,6 +6631,51 @@ color: #fafafa;
 
 .btnLogout-inGame:hover {
 	color: #0c1c2d;
+}
+
+#myStatusModal {
+	background: #0c1c2d;
+}
+
+#myStatusModal h2 {
+	color: #fafafa;
+	text-transform: uppercase;
+}
+
+.username-InGame-ModalBox .status-InGame {
+	width: 20px;
+	height: 20px;
+}
+
+#myStatusModal .close-reveal-modal {
+	color: #fafafa;
+}
+
+#myStatusModal .timer {
+	font-size: 84px;
+  font-weight: 700;
+  line-height: 1;
+  color: #fafafa;
+}
+
+#myStatusModal .btnLogout {
+	width: 100%;
+}
+
+.inGame-RELforCheckpointDIV-Menu {
+	position: relative;
+  font-size: 55px;
+  color: #fafafa;
+  text-align: center;
+    bottom: -38px;
+  background: #0c1c2d;
+}
+
+
+@media only screen and (max-width: 500px) {
+	.inGame-Checkpoint {
+		font-size: 14px;
+	}
 }
 /******************************************/
 

@@ -19,13 +19,8 @@
 	<!-- display map stuff if there is a race running -->
 
 				<!-- Size Classes: [small medium large xlarge expand] -->
-				<a href="#" data-reveal-id="myModal" class="small-4 columns hide-for-medium-up menu-icon">MENU</a>
-				<div id="myModal" class="reveal-modal" data-reveal>
-					<p class="username">MattCameron</p>
-					<p class="timer">00:00:00</p>
-					<button class="btnLogout">Log Out</button>
-					<a class="close-reveal-modal">&#215;</a>
-				</div>
+				<a href="#" data-reveal-id="myStatusModal" class="inGame-RELforCheckpointDIV-Menu small-4 columns hide-for-medium-up menu-icon"><i class="fi-list"></i></a>
+
 				<div class="timebox medium-5 columns hide-for-small-only">
 					<h2 class="username-InGame"><span class="status-InGame"></span> MattCameron</h2>
 					<h1 class="timer-InGame">00:00:00</h1>
@@ -50,6 +45,14 @@
 				</div>
 			</div>
 		</div>
+	</div>
+
+
+	<div id="myStatusModal" class="reveal-modal" data-reveal>
+		<h2 class="username-InGame-ModalBox"><span class="status-InGame"></span> MattCameron</h2>
+		<p class="timer">00:00:00</p>
+		<button class="main-btn btnLogout">Log Out</button>
+		<a class="close-reveal-modal">&#215;</a>
 	</div>
 
 <!-- otherwise, tell them to start a new race -->
