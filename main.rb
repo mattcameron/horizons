@@ -11,7 +11,7 @@ enable :sessions
 
 before do
 	User.joins(:checkpoints)
-	@current_race = Race.last
+	@current_race = current_race
 	@user = current_user
 	@users = User.all
 end
@@ -106,6 +106,15 @@ post '/api/checkpoints/:id/new' do
 		user_id: current_user.id,
 		checkpoint_id: params[:id],
 		race_id: current_race.id)
+end
+
+# Current race
+get '/api/race' do
+
+	content_type :json
+	created_at = current_race.created_at
+	ms_from_epoch = (created_at.to_i * 1000)
+	ms_from_epoch.to_json
 end
 
 # LOGIN
