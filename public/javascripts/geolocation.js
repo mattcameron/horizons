@@ -20,6 +20,8 @@ if ("geolocation" in navigator) {
     currentPositionMarker = new google.maps.Marker({
       position: currentPosition,
       map: map,
+      optimized: false,
+      icon: "img/mainMarker.gif",
       title: 'My Current Position!'
     });
 
