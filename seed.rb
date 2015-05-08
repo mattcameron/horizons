@@ -40,14 +40,33 @@ User.create id: 1,
 
 User.create id: 2,
 	user_name: "DT",
-	email: "DT@GA.com",
-	password: "password1"
+	email: "dt@ga.com",
+	password: "password"
 
 User.create id: 3,
 	user_name: "Phil",
 	email: "phil@littlepony.com",
-	password: "bigpony"
+	password: "password"
 
+User.create id: 4,
+	user_name: "Treva",
+	email: "treva@37celcius.com",
+	password: "password"
+
+User.create id: 5,
+	user_name: "Swanny",
+	email: "swanny@ga.com",
+	password: "password"
+
+User.create id: 6,
+	user_name: "Old Mate",
+	email: "oldmate@littlepony.com",
+	password: "password"
+
+User.create id: 7,
+	user_name: "New Mate",
+	email: "newmate@littlepony.com",
+	password: "password"
 
 Race.delete_all
 
@@ -81,5 +100,30 @@ CheckpointRaceUser.create id: 4,
 
 CheckpointRaceUser.create id: 5,
 	user_id: 3,
+	checkpoint_id: 2,
+	race_id: 1
+
+CheckpointRaceUser.create id: 6,
+	user_id: 4,
+	checkpoint_id: 2,
+	race_id: 1
+
+CheckpointRaceUser.create id: 7,
+	user_id: 5,
+	checkpoint_id: 3,
+	race_id: 1
+
+CheckpointRaceUser.create id: 8,
+	user_id: 5,
+	checkpoint_id: 1,
+	race_id: 1
+
+CheckpointRaceUser.create id: 9,
+	user_id: 6,
+	checkpoint_id: 1,
+	race_id: 1
+
+CheckpointRaceUser.create id: 10,
+	user_id: 7,
 	checkpoint_id: 2,
 	race_id: 1

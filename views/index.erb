@@ -14,6 +14,9 @@
         <div class="row">
 
           <section class="horizon-Page-Blurb medium-5 columns">
+           <% if logged_in? %>
+            <p class="username">Welcome <%= current_user.user_name %>! </p>
+            <% end %>  
             <h2>Expand your HORiZONS in a fun way</h2>
             <p>by racing others through the city you love. There may or may not be a prize for winning.</p>
             <h5><a href="#" class="horizon-Page-Blurb-Secondary-Link">More info</a></h5>
@@ -45,38 +48,44 @@
 
 
               <!-- List Users of the most recent race -->
-              <% @users.each do |user| %>
-              <li class="row">
-                <div class="horizon-Page-Race-Columns small-4 columns">
-                  <h5><i class="TEMPORARY-COLOR-5 fa fa-circle"></i> <%= user.user_name %></h5>
-                </div>
-                <div class="horizon-Page-Race-Columns small-4 columns">
+                <% @five_users.each do |user| %>
 
-                  <div class="progress">
-                    <span class="meter"></span>
+                <li class="row">
+                  <div class="horizon-Page-Race-Columns small-4 columns">
+                    <h5><i class="colour-marker fa fa-circle"></i> <%= user.user_name %></h5>
                   </div>
+                  <div class="horizon-Page-Race-Columns small-4 columns">
 
-                  <h5><%= user.checkpoint_race_users.where(["race_id = ? and checkpoint_id IS NOT NULL", @race.id]).count %>/<%= @race.checkpoints.distinct.count %></h5>
-                </div>
-                <div class="horizon-Page-Race-Columns horizon-Page-Race-Columns-TimeLapse small-4 columns">
-                  <h5>02:20:40</h5>
-                </div>
-              </li>
+                    <div class="progress">
+                      <span class="meter" style="width: <%= (user.checkpoints.count.to_f/@race.checkpoints.distinct.count)*100 %>%"></span>
+                    </div>
 
-              <% end %>
+                    <h5><%= user.checkpoint_race_users.where(["race_id = ? and checkpoint_id IS NOT NULL", @race.id]).count %>/<%= @race.checkpoints.distinct.count %></h5>
+                  </div>
+                  <div class="horizon-Page-Race-Columns horizon-Page-Race-Columns-TimeLapse small-4 columns">
+                    <h5>02:20:40</h5>
+                  </div>
+                </li>
+
+              <% end %> 
             </ul>
 
-            <% if race_running? %>
-              <form action="/race/join" method="post">
-                <input type="submit" class="main-btn button radius large medium-6 column" value="Join Race">
-              </form>
-            <% else %>
+
+            <% if race_running? && !logged_in? %>
+
+                <a role="button" href="#" data-reveal-id="accessHorizons" class="main-btn button radius large medium-6 column">Join the race</a>
+            <% elsif !race_running? && !logged_in? %>
+                <a role="button" href="#" data-reveal-id="accessHorizons" class="main-btn button radius large medium-6 column">New Race</a>
+            <% elsif !race_running? && logged_in? %>
               <form action="/race/new" method="post">
                 <input type="submit" class="main-btn button radius large medium-6 column" value="New Race">
               </form>
+             <% elsif race_running? && logged_in? %>
+              <form action="/race/join" method="post">
+                <input type="submit" class="main-btn button radius large medium-6 column" value="Join Race">
+              </form>
             <% end %>
 
-            <!-- <a role="button" href="#" data-reveal-id="accessHorizons" class="main-btn button radius large medium-6 column">Join the race</a> -->
             <a role="button" href="#" class="howToPlay-btn medium-6 column">How to play</a>
 
           </section>
@@ -289,4 +298,15 @@
   <a class="close-reveal-modal" aria-label="Close">&#215;</a>
 
 </div>
+<script>
+$(function(){
+      $('#fullpage').fullpage({
 
+        navigation: true,
+        navigationPosition: 'right',
+        
+
+      verticalCentered: false
+    });
+  });
+</script>
