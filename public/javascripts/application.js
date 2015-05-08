@@ -111,34 +111,51 @@ function compareCheckpointsSetMeter() {
 
 
 
-// get created_at time of current race
-// var getCreatedAtTime = function() {
-// 		$.ajax({
-// 	    url: "/api/race",
-// 	    method: "get"
-// 	  }).done(function(data) {
-// 	  	console.log(data);
-// 	  	raceCreatedAt = data;
-// 	  	elapsedTime = milliseconds - raceCreatedAt + 36000000;
-// 	  });
 
-// }
+/* Race clock *****************/
+milliseconds = parseFloat($('.timer-InGame').html());
+function msToTime(s) {
+  var ms = s % 1000;
+  s = (s - ms) / 1000;
+  var secs = s % 60;
+  s = (s - secs) / 60;
+  var mins = s % 60;
+  var hrs = (s - mins) / 60;
+
+  console.log(hrs + ':' + mins + ':' + secs);
+  return hrs + ':' + mins + ':' + secs;
+}
+
+function startTime() {
+    var today = $('.timer-InGame').html();
+    var split_today = today.split(':');
+    var hours= parseInt(split_today[0]);
+    var minutes= parseInt(split_today[1]);
+    var seconds= parseInt(split_today[2]);
+
+    if (seconds < 62) { 
+      seconds++
+    };
+    if (seconds === 60) {
+      seconds = 0;
+      minutes++;
+    }
+    if (minutes === 60) {
+      minutes = 0;
+      hours++
+    };
+    minutes = checkTime(minutes);
+    seconds = checkTime(seconds);
+    $('.timer-InGame').html(hours+":"+minutes+":"+seconds);
+    var time = setTimeout(function(){startTime()},1000);
+}
+
+function checkTime(i) {
+    if (i<10) {i = "0" + i};  // add zero in front of numbers < 10
+    return i;
+}
 
 
-
-/*covert milliseconds to readable time *****************/
-
-// function msToTime(s) {
-//   var ms = s % 1000;
-//   s = (s - ms) / 1000;
-//   var secs = s % 60;
-//   s = (s - secs) / 60;
-//   var mins = s % 60;
-//   var hrs = (s - mins) / 60;
-
-//   console.log(hrs + ':' + mins + ':' + secs);
-//   return hrs + ':' + mins + ':' + secs;
-// }
 
 /*************************************/
 
@@ -149,9 +166,8 @@ $(document).ready(function(){
         $(this).css('color', getRandomColour());
     });
 
-	// getCreatedAtTime()
+    startTime();
 
-	// setTimeout(msToTime(elapsedTime), 3000);
 });
 
 
