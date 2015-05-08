@@ -6809,3 +6809,37 @@ content: " ";
   margin-right: 10px;
   margin-top: 20px;
 }
+
+.raceOver-Container {
+  width: 100%;
+  height: 100%;
+  background: #0c1c2d;
+}
+
+.logo-result {
+fill: red;
+}
+.raceResultsContainer {
+  top: 160px;
+  position: relative;
+}
+.raceResults {
+  text-align: center;
+}
+
+.raceResults h1 {
+    font-family: "Arvo", Georgia, Cambria, "Times New Roman", Times, serif;
+text-align: center;
+color: #fafafa;
+text-transform: uppercase;
+}
+
+.raceResults h3 {
+      font-family: "Open Sans", Helvetica, Roboto, Arial, sans-serif;
+color: #fafafa;
+margin-bottom: 20px;
+}
+
+
+
+
