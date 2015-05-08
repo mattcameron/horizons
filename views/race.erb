@@ -28,7 +28,7 @@
 						<input type="hidden" name="_method" value="delete">
 						<button class="btnLogout-inGame"><span class="fa fa-power-off"></span></button>
 					</form>
-					
+
 					<a class="close-reveal-modal">&#215;</a>
 				</div>
 
@@ -39,9 +39,9 @@
 				<div class="divBoxCheckpoint-Container small-8 medium-5 columns">
 
 					<div class="divBoxCheckpoint">
-						<h5 class="inGame-Checkpoint">Checkpoints <span class="tally"><%= current_user_checkpoints_hit.count %>/<%= current_race.checkpoints.distinct.count %></span></h5>
+						<h5 class="inGame-Checkpoint">Checkpoints <span class="tally"><%= current_user_checkpoints_hit.count %>/<%= current_race_checkpoints.count %></span></h5>
 						<div class="progress progress-InGame success round">
-							<span class="meter inGame-Meter" style="width: 0%"></span>
+							<span class="meter inGame-Meter" style="width: <%= (current_user_checkpoints_hit.count.to_f/current_race_checkpoints.count)*100 %>%"></span>
 						</div>
 					</div>
 

@@ -16,7 +16,7 @@
           <section class="horizon-Page-Blurb medium-5 columns">
            <% if logged_in? %>
             <p class="username">Welcome <%= current_user.user_name %>! </p>
-            <% end %>  
+            <% end %>
             <h2>Expand your HORiZONS in a fun way</h2>
             <p>by racing others through the city you love. There may or may not be a prize for winning.</p>
             <h5><a href="#" class="horizon-Page-Blurb-Secondary-Link">More info</a></h5>
@@ -57,7 +57,7 @@
                   <div class="horizon-Page-Race-Columns small-4 columns">
 
                     <div class="progress">
-                      <span class="meter" style="width: <%= (current_user_checkpoints_hit.count.to_f/@race.checkpoints.distinct.count)*100 %>%"></span>
+                      <span class="meter" style="width: <%= (current_user_checkpoints_hit.count.to_f/current_race_checkpoints.count)*100 %>%"></span>
                     </div>
 
                     <h5><%= current_user_checkpoints_hit.count %>/<%= @race.checkpoints.distinct.count %></h5>
@@ -67,7 +67,7 @@
                   </div>
                 </li>
 
-              <% end %> 
+              <% end %>
             </ul>
 
 
@@ -96,7 +96,7 @@
     </section>
 
     <!-- NEW SECTION START -->
-    <section id="HowToPlay" class="section"> 
+    <section id="HowToPlay" class="section">
       <div class="otherPageContent">
         <div class="row">
             <section class="howToPlay-Info medium-5 columns">
@@ -126,7 +126,7 @@
               </ul>
               <h5><a href="#" class="horizon-Page-Blurb-Secondary-Link">About team Aslan</a></h5>
             </section>
-            
+
             <section class="howToPlay-Devices medium-7 columns">
               <a role="button" href="#" data-reveal-id="accessHorizons" class="main-btn button radius large medium-6 medium-offset-3 column">Join the race</a>
             </section>
@@ -134,7 +134,7 @@
       </div>
     </section>
 
-    <section id="DaTeam" class="section"> 
+    <section id="DaTeam" class="section">
       <div class="otherPageContent">
         <div class="row">
           <section class="horizon-Page-Blurb medium-5 columns">
@@ -143,7 +143,7 @@
             <a role="button" href="#" data-reveal-id="accessHorizons" class="main-btn button radius large medium-9 column">Join the race</a>
             <h5 class="medium-10"><a href="#" class="horizon-Page-Blurb-Secondary-Link">More info</a></h5>
           </section>
-            
+
             <section class="daTeam-Profile medium-7 columns">
               <div >
                 <ul>
@@ -190,7 +190,7 @@
                   </li>
                 </ul>
               </div>
-              
+
             </section>
         </div>
       </div>
@@ -304,7 +304,7 @@ $(function(){
 
         navigation: true,
         navigationPosition: 'right',
-        
+
 
       verticalCentered: false
     });
