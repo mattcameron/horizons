@@ -6715,6 +6715,12 @@ color: #fafafa;
 	width: 100%;
 }
 
+#myStatusModal ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
 .inGame-RELforCheckpointDIV-Menu {
 	position: relative;
   font-size: 55px;
@@ -6930,7 +6936,7 @@ a:hover {
   margin: 0;
 }
 
-#leaderboardBox h4 {
+#leaderboardBox h4, #myStatusModal h4 {
       font-family: "Arvo", Georgia, Cambria, "Times New Roman", Times, serif;
 color: #fafafa;
   text-transform: uppercase;
@@ -6968,7 +6974,23 @@ color: #fafafa;
     font-size: 18px;
   }
 
+  #myStatusModal h4 {
+    font-size: 28px;
+  }
+
   .daTeam-Profile h5 {
     font-size: 10px;
+  }
+
+  #myStatusModal ul {
+    margin-bottom: 30px;
+  }
+
+  #myStatusModal .progress {
+    width: 70%;
+  }
+
+  #myStatusModal .leaderBoard-Title h5 {
+    font-size: 0.75em;
   }
 }
