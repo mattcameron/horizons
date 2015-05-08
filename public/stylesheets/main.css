@@ -3984,7 +3984,7 @@ ul.pagination {
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.4); }
   @media only screen and (max-width: 40em) {
     .reveal-modal {
-      min-height: 100vh; } }
+      min-height: 90vh; } }
   .reveal-modal .column, .reveal-modal .columns {
     min-width: 0; }
   .reveal-modal > :first-child {
@@ -6952,6 +6952,10 @@ color: #fafafa;
 
 @media only screen and (max-width: 40em) {
   .leaderBoxReveal {
+    display: none;
+  }
+
+  #fp-nav {
     display: none;
   }
 }

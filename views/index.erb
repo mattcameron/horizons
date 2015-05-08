@@ -14,9 +14,8 @@
         <div class="row">
 
           <section class="horizon-Page-Blurb medium-5 columns">
-           <% if logged_in? %>
-
-            <h5 class="username-home">Welcome <span><%= current_user.user_name %> </span>! </h5>
+            <% if logged_in? %>
+              <h5 class="username-home">Welcome <span><%= current_user.user_name %> </span>! </h5>
             <% end %>  
 
             <h2>Expand your HORiZONS in a fun way</h2>
@@ -122,7 +121,7 @@
               <h5><a href="#" class="horizon-Page-Blurb-Secondary-Link">About team Aslan</a></h5>
             </section>
 
-            <section class="howToPlay-Devices medium-7 columns">
+            <section class="howToPlay-Devices hide-for-small-only medium-7 columns">
               <a role="button" href="#" data-reveal-id="accessHorizons" class="main-btn button radius large medium-6 medium-offset-3 column">Join the race</a>
             </section>
         </div>
@@ -196,12 +195,12 @@
 
   <div id="Main-Footer-DIV" class="row">
     <footer class="main-Footer-DIV-Footer">
-      <div class="medium-5 columns">
+      <div class="small-3 medium-5 columns">
         <object type="image/svg+xml" data="img/teamaslanlogo.svg" class="aslan-logo">
         Team Aslan<!-- fallback image in CSS -->
         </object>
       </div>
-      <div class="medium-7 columns end">
+      <div class="small-9 medium-7 columns end">
         <p>&copy; 2015 Team Aslan. A <a href="#" > General Assembly</a> Project.  <a href="#" >Terms &amp; Conditions</a> | <a href="#" >Privacy Policy</a> | <a href="#" >Contact</a></p>
       </div>
     </footer>
