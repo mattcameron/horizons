@@ -110,7 +110,7 @@
                   <div class="horizon-Page-Race-Columns small-4 columns">
 
                     <div class="progress">
-                      <span class="meter inGame-Meter" style="width: <%= (user_checkpoints_hit(user.id).count.to_f/current_race_checkpoints.count)*100 %>%"></span>
+                      <span class="meter " style="width: <%= (user_checkpoints_hit(user.id).count.to_f/current_race_checkpoints.count)*100 %>%"></span>
                     </div>
 
                     <h5><span class="tally"><%= user_checkpoints_hit(user.id).count %>/<%= current_race_checkpoints.count %></span></h5>
