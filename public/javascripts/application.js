@@ -113,7 +113,7 @@ function startTime() {
     var minutes= parseInt(split_today[1]);
     var seconds= parseInt(split_today[2]);
 
-    if (seconds < 62) { 
+    if (seconds < 62) {
       seconds++
     };
     if (seconds === 60) {
@@ -146,9 +146,9 @@ $(document).ready(function(){
         $(this).css('color', getRandomColour());
     });
 
+    compareCheckpointsSetMeter()
     startTime();
 
-    compareCheckpointsSetMeter()
 });
 
 

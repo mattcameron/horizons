@@ -16,13 +16,15 @@
           <section class="horizon-Page-Blurb medium-5 columns">
 
             <% if logged_in? %>
-              <h5 class="username-home">Welcome <span><%= current_user.user_name %> </span>! </h5>
-            <% end %>  
+              <h5 class="username-home">Welcome <span><%= current_user.user_name %></span>! </h5>
+            <% end %>
 
 
-            <h2>Expand your HORiZONS in a fun way</h2>
-            <p>by racing others through the city you love. There may or may not be a prize for winning.</p>
-            <h5><a href="#" class="horizon-Page-Blurb-Secondary-Link">More info</a></h5>
+
+            <h2>Expand your horizons</h2>
+            <p>Race through the city you love, collecting checkpoints and discovering places you never knew existed!</p>
+            <h5><a href="#secondPage" class="horizon-Page-Blurb-Secondary-Link">More info</a></h5>
+
           </section>
 
           <section class="horizon-Page-Race-Status medium-7 columns">
@@ -75,7 +77,6 @@
 
 
             <% if race_running? && !logged_in? %>
-
                 <a role="button" href="#" data-reveal-id="accessHorizons" class="main-btn button radius large medium-6 column">Join the race</a>
             <% elsif !race_running? && !logged_in? %>
                 <a role="button" href="#" data-reveal-id="accessHorizons" class="main-btn button radius large medium-6 column">New Race</a>
@@ -89,7 +90,7 @@
               </form>
             <% end %>
 
-            <a role="button" href="#" class="howToPlay-btn medium-6 column">How to play</a>
+            <a data-menuanchor="secondPage" role="button" href="#secondPage" class="howToPlay-btn medium-6 column">How to play</a>
 
           </section>
 
@@ -105,26 +106,47 @@
             <section class="howToPlay-Info medium-5 columns">
               <h4><i class="fi-compass"></i> How to Play</h4>
               <ul>
+                <li class="howToPlay-SignIn">
+                  <i class="fa fa-sign-in"></i>
+                  <section class="howToPlayList-Right">
+                    <h3>Join a race</h3>
+                    <p>Compete in the current race, or start a new one.</p>
+                  </section>
+                </li>
                 <li class="howToPlay-Join">
                   <i class="fa fa-crosshairs"></i>
                   <section class="howToPlayList-Right">
-                    <h3>Join or create a race</h3>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum purus diam, pharetra non nibh vel, laoreet. Mauris eleifend et urna non porta. </p>
+                    <h3>Collect the checkpoints</h3>
+                    <p>Get to each checkpoint as quickly as you can. Run, ride, or fly - it doesn't matter, just HURRY!</p>
                   </section>
                 </li>
                 <li>
                   <i class="fa fa-trophy"></i>
                   <section class="howToPlayList-Right">
                     <h3>Win the race</h3>
-                    <p>Vestibulum purus diam, pharetra non nibh vel, laoreet. Mauris eleifend et urna non. In condimentum vitae velit id convallis.</p>
+                    <p>The first person to reach all of the checkpoints (in any order) wins!</p>
                   </section>
                 </li>
               </ul>
-              <h5><a href="#" class="horizon-Page-Blurb-Secondary-Link">About team Aslan</a></h5>
             </section>
 
             <section class="howToPlay-Devices hide-for-small-only medium-7 columns">
-              <a role="button" href="#" data-reveal-id="accessHorizons" class="main-btn button radius large medium-6 medium-offset-3 column">Join the race</a>
+
+              <% if race_running? && !logged_in? %>
+                  <a role="button" href="#" data-reveal-id="accessHorizons" class="main-btn button radius large medium-6 medium-offset-3 column">Join the race</a>
+              <% elsif !race_running? && !logged_in? %>
+                  <a role="button" href="#" data-reveal-id="accessHorizons" class="main-btn button radius large medium-6 medium-offset-3 column">New Race</a>
+              <% elsif !race_running? && logged_in? %>
+                <form action="/race/new" method="post">
+                  <input type="submit" class="main-btn btn-logedin button radius large medium-6 medium-offset-3 column" value="New Race">
+                </form>
+               <% elsif race_running? && logged_in? %>
+                <form action="/race/join" method="post">
+                  <input type="submit" class="main-btn btn-logedin button radius large medium-6 medium-offset-3 column" value="Join Race">
+                </form>
+              <% end %>
+
+              <!-- <a role="button" href="#" data-reveal-id="accessHorizons" class="main-btn button radius large medium-6 medium-offset-3 column">Join the race</a> -->
             </section>
         </div>
       </div>
@@ -134,10 +156,10 @@
       <div class="otherPageContent">
         <div class="row">
           <section class="horizon-Page-Blurb medium-5 columns">
-            <h2>Expand your HORiZONS in a fun way</h2>
-            <p>by racing others through the city you love. There may or may not be a prize for winning. <a href="mailto:info@horizonsapp.co">info@horizonsapp.co</a></p>
-            <a role="button" href="#" data-reveal-id="accessHorizons" class="main-btn button radius large medium-9 column">Join the race</a>
-            <h5 class="medium-10"><a href="#" class="horizon-Page-Blurb-Secondary-Link">More info</a></h5>
+            <h2>Team Aslan</h2>
+            <p>Meet the team behind Horizons - three up and coming web developers, who love discovering Melbourne.</p>
+            <a role="button" href="mailto:mattlbcameron@gmail.com" class="main-btn button radius large medium-9 column">Contact Us</a>
+
           </section>
 
             <section class="daTeam-Profile medium-7 columns">
@@ -151,8 +173,8 @@
                       <h4>Matt Cameron</h4>
                       <h5>Full stack Developer</h5>
                       <ul class="sosmedAslan">
-                        <li><a href="https://au.linkedin.com/in/mattlbcameron" target="_blank" alt="Matt Cameron Linkedin"><i class="fa fa-linkedin"></i></li>
-                        <li><a href="https://github.com/mattcameron" target="_blank" alt="Matt Cameron Github"><i class="fa fa-github"></i></li>
+                        <li><a href="https://au.linkedin.com/in/mattlbcameron" target="_blank" alt="Matt Cameron Linkedin"><i class="fa fa-linkedin"></i></a></li>
+                        <li><a href="https://github.com/mattcameron" target="_blank" alt="Matt Cameron Github"><i class="fa fa-github"></i></a></li>
                       </ul>
                     </section>
                   </li>
@@ -164,8 +186,8 @@
                       <h4>Dominic White</h4>
                       <h5>Full stack Developer</h5>
                       <ul class="sosmedAslan">
-                        <li><a href="https://au.linkedin.com/in/dominicpaulwhite" target="_blank" alt="Dominic White Linkedin"><i class="fa fa-linkedin"></i></li>
-                        <li><a href="https://github.com/DomWhite" target="_blank" alt="Dominic White Github"><i class="fa fa-github"></i></li>
+                        <li><a href="https://au.linkedin.com/in/dominicpaulwhite" target="_blank" alt="Dominic White Linkedin"><i class="fa fa-linkedin"></i></a></li>
+                        <li><a href="https://github.com/DomWhite" target="_blank" alt="Dominic White Github"><i class="fa fa-github"></i></a></li>
                       </ul>
                     </section>
                   </li>
@@ -177,10 +199,10 @@
                       <h4>Beta Ngadiman</h4>
                       <h5>Front End Developer &amp; Designer</h5>
                       <ul class="sosmedAslan">
-                        <li><a href="https://www.linkedin.com/in/bngadiman" target="_blank" alt="Beta Ngadiman Linkedin"><i class="fa fa-linkedin"></i></li>
-                        <li><a href="https://github.com/37celsius" target="_blank" alt="Beta Ngadiman Github"><i class="fa fa-github"></i></li>
-                        <li><a href="https://twitter.com/37centigrade" target="_blank" alt="Beta Ngadiman Twitter"><i class="fa fa-twitter"></i></li>
-                        <li><a href="https://www.behance.net/37celsius" target="_blank" alt="Beta Ngadiman Behance"><i class="fa fa-behance"></i></li>
+                        <li><a href="https://www.linkedin.com/in/bngadiman" target="_blank" alt="Beta Ngadiman Linkedin"><i class="fa fa-linkedin"></i></a></li>
+                        <li><a href="https://github.com/37celsius" target="_blank" alt="Beta Ngadiman Github"><i class="fa fa-github"></i></a></li>
+                        <li><a href="https://twitter.com/37centigrade" target="_blank" alt="Beta Ngadiman Twitter"><i class="fa fa-twitter"></i></a></li>
+                        <li><a href="https://www.behance.net/37celsius" target="_blank" alt="Beta Ngadiman Behance"><i class="fa fa-behance"></i></a></li>
                       </ul>
                     </section>
                   </li>
@@ -203,7 +225,7 @@
         </object>
       </div>
       <div class="small-9 medium-7 columns end">
-        <p>&copy; 2015 Team Aslan. A <a href="#" > General Assembly</a> Project.  <a href="#" >Terms &amp; Conditions</a> | <a href="#" >Privacy Policy</a> | <a href="#" >Contact</a></p>
+        <p>&copy; 2015 Team Aslan. A <a href="https://generalassemb.ly/" > General Assembly</a> Project.  <a href="#" >Terms &amp; Conditions</a> | <a href="#" >Privacy Policy</a> | <a data-menuanchor="thirdPage" href="#thirdPage"  >Contact</a></p>
       </div>
     </footer>
   </div>
@@ -248,7 +270,7 @@
 
     <section class="accessHorizons-RegisterSection">
 
-      <h4>Register to Horizons</h4>
+      <h4>Register</h4>
 
       <form action="/signup" method="post">
 
@@ -297,7 +319,7 @@
 <script>
 $(function(){
       $('#fullpage').fullpage({
-
+anchors:['firstPage', 'secondPage', 'thirdPage'],
         navigation: true,
         navigationPosition: 'right',
 
