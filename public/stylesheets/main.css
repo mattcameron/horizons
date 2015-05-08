@@ -3984,7 +3984,9 @@ ul.pagination {
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.4); }
   @media only screen and (max-width: 40em) {
     .reveal-modal {
-      min-height: 90vh; } }
+      min-height: 85vh;
+  top: 90px !important;
+  border: 0; } }
   .reveal-modal .column, .reveal-modal .columns {
     min-width: 0; }
   .reveal-modal > :first-child {
@@ -6520,7 +6522,7 @@ span.prefix, label.prefix {
     display: none; }
 
   .aslan-logo {
-    height: 40px; }
+    width: 100%; }
 
   .horizon-Page-Race-Columns h5 {
     font-size: .725em; }
@@ -6716,10 +6718,9 @@ color: #fafafa;
 .inGame-RELforCheckpointDIV-Menu {
 	position: relative;
   font-size: 55px;
-  color: #fafafa;
+  color: #0c1c2d;
   text-align: center;
     bottom: -38px;
-  background: #0c1c2d;
 }
 
 
@@ -6957,5 +6958,17 @@ color: #fafafa;
 
   #fp-nav {
     display: none;
+  }
+
+  .main-Footer-DIV-Footer p {
+    font-size: 10px;
+  }
+
+  .daTeam-Profile h4 {
+    font-size: 18px;
+  }
+
+  .daTeam-Profile h5 {
+    font-size: 10px;
   }
 }
