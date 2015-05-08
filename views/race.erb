@@ -39,7 +39,7 @@
 				<div class="divBoxCheckpoint-Container small-8 medium-5 columns">
 
 					<div class="divBoxCheckpoint">
-						<h5 class="inGame-Checkpoint">Checkpoints <span class="tally"><%= @user.checkpoint_race_users.where(["race_id = ? and checkpoint_id IS NOT NULL", current_race.id]).count %>/<%= current_race.checkpoints.distinct.count %></span></h5>
+						<h5 class="inGame-Checkpoint">Checkpoints <span class="tally"><%= current_user_checkpoints_hit.count %>/<%= current_race.checkpoints.distinct.count %></span></h5>
 						<div class="progress progress-InGame success round">
 							<span class="meter inGame-Meter" style="width: 0%"></span>
 						</div>
