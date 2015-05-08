@@ -35,7 +35,9 @@ get '/login' do
 end
 
 get '/race' do
-
+	@race = Race.last
+	@users = @race.users.distinct
+@five_users = @race.users.order(id: :asc).limit(6).uniq
 	erb :race
 end
 

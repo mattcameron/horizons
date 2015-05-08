@@ -15,7 +15,7 @@
 
           <section class="horizon-Page-Blurb medium-5 columns">
            <% if logged_in? %>
-            <p class="username">Welcome <%= current_user.user_name %>! </p>
+            <h5 class="username-home">Welcome <span><%= current_user.user_name %> </span>! </h5>
             <% end %>  
             <h2>Expand your HORiZONS in a fun way</h2>
             <p>by racing others through the city you love. There may or may not be a prize for winning.</p>
@@ -102,13 +102,6 @@
             <section class="howToPlay-Info medium-5 columns">
               <h4><i class="fi-compass"></i> How to Play</h4>
               <ul>
-                <li class="howToPlay-SignIn">
-                  <i class="fa fa-sign-in"></i>
-                  <section class="howToPlayList-Right">
-                    <h3><a href="#">Sign in</a> or <a href="#">register</a> </h3>
-                    <p>Adipiscing elit. Vestibulum purus diam, pharetra non nibh vel, laoreet dignissimi.</p>
-                  </section>
-                </li>
                 <li class="howToPlay-Join">
                   <i class="fa fa-crosshairs"></i>
                   <section class="howToPlayList-Right">
