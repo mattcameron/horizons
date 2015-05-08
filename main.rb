@@ -143,8 +143,6 @@ post '/session' do
 	if @user && @user.authenticate(params[:password])
 		session[:user_id] = @user.id
 		redirect to '/'
-	else
-		erb :login
 	end
 end
 
