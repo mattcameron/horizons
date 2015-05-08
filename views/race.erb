@@ -33,13 +33,14 @@
 				</div>
 
 				<div class="timebox medium-5 columns hide-for-small-only">
-					<h2 class="username-InGame"><span class="status-InGame"></span> <%= current_user.user_name %></h2>
+					<h2 class="username-InGame"><span class="status-InGame"></span> <%= current_user.user_name %> </h2>
 					<h1 class="timer-InGame">00:00:00</h1>
 				</div>
 				<div class="divBoxCheckpoint-Container small-8 medium-5 columns">
 
 					<div class="divBoxCheckpoint">
-						<h5 class="inGame-Checkpoint">Checkpoints <span class="tally"><%= current_user_checkpoints_hit.count %>/<%= current_race_checkpoints.count %></span></h5>
+						<h5 class="inGame-Checkpoint">Checkpoints <span class="tally"><%= @user.checkpoint_race_users.where(["race_id = ? and checkpoint_id IS NOT NULL", current_race.id]).count %>/<%= current_race.checkpoints.distinct.count %></span> <span class="leaderBoxReveal" data-reveal-id="leaderboardBox" >View Leaderboard</span></h5>
+
 						<div class="progress progress-InGame success round">
 							<span class="meter inGame-Meter" style="width: <%= (current_user_checkpoints_hit.count.to_f/current_race_checkpoints.count)*100 %>%"></span>
 						</div>
@@ -63,6 +64,65 @@
 		<h2 class="username-InGame-ModalBox"><span class="status-InGame"></span> MattCameron</h2>
 		<p class="timer">00:00:00</p>
 		<button class="main-btn btnLogout">Log Out</button>
+		<a class="close-reveal-modal">&#215;</a>
+	</div>
+
+	<div id="leaderboardBox" class="reveal-modal small" data-reveal>
+		<div class="row">
+		<h4><i class="fi-graph-bar"></i>
+              <% if race_running? %>
+              Current Race
+              <% else %>
+              Last Race
+              <% end %>
+            </h4>
+
+            <ul>
+
+              <!-- Table FRONT Title -->
+              <li class="row">
+                <div class="leaderBoard-Title small-4 columns">
+                  <h5>Username</h5>
+                </div>
+                <div class="leaderBoard-Title small-4 columns">
+                  <h5>Checkpoints</h5>
+                </div>
+                <div class="leaderBoard-Title horizon-Page-Race-Columns-TimeLapse small-4 columns">
+                  <h5>Timelapse</h5>
+                </div>
+              </li>
+
+
+              <!-- List Users of the most recent race -->
+                <% @five_users.each do |user| %>
+
+                <li class="row">
+                  <div class="horizon-Page-Race-Columns small-4 columns">
+                    <h5><i class="colour-marker fa fa-circle"></i> 
+                    	<% if current_user == user %>
+                    	<span class="currentUser"><%= user.user_name %></span>
+
+                    	<% else %>
+                    	 <%= user.user_name %>
+                    	<% end %>
+                    </h5>
+                  </div>
+                  <div class="horizon-Page-Race-Columns small-4 columns">
+
+                    <div class="progress">
+                      <span class="meter" style="width: <%= (user.checkpoints.count.to_f/@race.checkpoints.distinct.count)*100 %>%"></span>
+                    </div>
+
+                    <h5><%= user.checkpoint_race_users.where(["race_id = ? and checkpoint_id IS NOT NULL", @race.id]).count %>/<%= @race.checkpoints.distinct.count %></h5>
+                  </div>
+                  <div class="horizon-Page-Race-Columns horizon-Page-Race-Columns-TimeLapse small-4 columns">
+                    <h5>02:20:40</h5>
+                  </div>
+                </li>
+
+              <% end %> 
+            </ul>
+            </div>
 		<a class="close-reveal-modal">&#215;</a>
 	</div>
 
