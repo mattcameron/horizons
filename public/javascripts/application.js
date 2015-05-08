@@ -85,7 +85,6 @@ var setMeter = function() {
 
 //get the amount of current active race checkpoints
 function compareCheckpointsSetMeter() {
-  console.log('running compareCheckpointsSetMeter')
 		$.ajax({
 	    url: "/api/checkpoints",
 	    method: "get"
@@ -141,6 +140,8 @@ $(document).ready(function(){
 	  $('.colour-marker').each(function() {
         $(this).css('color', getRandomColour());
     });
+
+    compareCheckpointsSetMeter()
 
 	// getCreatedAtTime()
 
