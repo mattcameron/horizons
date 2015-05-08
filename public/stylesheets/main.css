@@ -6385,7 +6385,7 @@ main {
   background-size: cover; }
 
 .pageContentWrapper {
-  margin-top: 160px; }
+  margin-top: 140px; }
 
 .horizon-Page-Blurb {
   position: relative; }
@@ -6470,7 +6470,7 @@ main {
 
 .main-btn {
   text-transform: uppercase;
-  font-weight: 700; }
+  font-weight: 700;   }
 
 .howToPlay-btn {
   color: #FAFAFA;
@@ -6791,7 +6791,7 @@ font-weight: 700;
 }
 
 .otherPageContent {
-    top: 145px;
+    top: 140px;
   position: relative;
 }
 
@@ -6957,6 +6957,10 @@ color: #fafafa;
   font-weight: 700;
 }
 
+.btn-logedin {
+  margin-top: 50%;
+}
+
 @media only screen and (max-width: 40em) {
   .leaderBoxReveal {
     display: none;
@@ -6992,5 +6996,9 @@ color: #fafafa;
 
   #myStatusModal .leaderBoard-Title h5 {
     font-size: 0.75em;
+  }
+
+  .main-btn {
+    margin-bottom: 0;
   }
 }
