@@ -68,10 +68,27 @@
 
 <!-- otherwise, tell them to start a new race -->
 <% else %>
-	<h1>This Race is over!! </h1>
 
-	<h3>Time to start a new one</h3>
-	<form action="/race/new" method="post">
-		<input type="submit" value="New Race">
-	</form>
+<div class="raceOver-Container">
+  <div id="Main-Header-DIV" class="row">
+    <header class="main-Header-DIV-Header small-8 small-offset-2 medium-4 medium-offset-4 columns">
+      <object type="image/svg+xml" data="img/horizonlogo.svg" class="logo">
+        Team Aslan&#39;s Horizons <!-- fallback image in CSS -->
+      </object>
+    </header>
+  </div>
+
+	<div class="row raceResultsContainer">
+		<div class="medium-6 medium-centered columns raceResults">
+			<h1>This Race is over!! :( </h1>
+
+			<h3>Time to start a new one</h3>
+              <form action="/race/new" method="post">
+                <input type="submit" class="main-btn button radius large medium-8 medium-centered column" value="New Race">
+              </form>
+		</div>
+	</div>
+
+</div>
+
 <% end %>
