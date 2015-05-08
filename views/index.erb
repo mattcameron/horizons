@@ -74,9 +74,6 @@
             <% if race_running? && !logged_in? %>
 
                 <a role="button" href="#" data-reveal-id="accessHorizons" class="main-btn button radius large medium-6 column">Join the race</a>
-<!--               <form action="/race/join" method="post">
-                <input type="submit" class="main-btn button radius large medium-6 column" value="Join Race">
-              </form> -->
             <% elsif !race_running? && !logged_in? %>
                 <a role="button" href="#" data-reveal-id="accessHorizons" class="main-btn button radius large medium-6 column">New Race</a>
             <% elsif !race_running? && logged_in? %>
