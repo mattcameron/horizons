@@ -36,8 +36,7 @@ end
 
 get '/race' do
 	@race = Race.last
-	@users = @race.users.distinct
-@five_users = @race.users.order(id: :asc).limit(6).uniq
+	@five_users = @race.users.order(id: :asc).limit(6).uniq
 	erb :race
 end
 
@@ -183,8 +182,8 @@ helpers do
 		end
 	end
 
-	def current_user_checkpoints_hit
-		data = current_user.checkpoint_race_users.where("race_id = #{current_race.id} and checkpoint_id IS NOT NULL").uniq
+	def user_checkpoints_hit(user_id)
+		data = User.find_by(id: user_id).checkpoint_race_users.where("race_id = #{current_race.id} and checkpoint_id IS NOT NULL").uniq
 		checkpoints = data.map { |row|
 			Checkpoint.find(row[:checkpoint_id])
 		}
