@@ -28,7 +28,7 @@ function inCheckpoint(point) {
       }).done(function() {
 
         //  get user & race checkpoints, compare, then update tally
-        checkProgress();
+        compareCheckpointsSetMeter()
         // check if this was the last checkpoint
         allCheckpoints();
       });
@@ -87,41 +87,29 @@ var userCheckpoints;
 
 // update html/css to show race progress stats for user
 var setMeter = function() {
-	setTimeout(function(){
-		$('.inGame-Meter').css('width', (userCheckpoints/currentRaceCheckpoints*100)+"%")},
-		700
-	);
-	setTimeout(function(){
-		$('.tally').html(userCheckpoints + "/" + currentRaceCheckpoints)},
-		700
-	);
+    $('.inGame-Meter').css('width', (userCheckpoints/currentRaceCheckpoints*100)+"%");
+    $('.tally').html(userCheckpoints + "/" + currentRaceCheckpoints);
 }
 
 //get the amount of current active race checkpoints
-var getRaceCheckpoints = function() {
+function compareCheckpointsSetMeter() {
 		$.ajax({
 	    url: "/api/checkpoints",
 	    method: "get"
 	  }).done(function(data) {
 	  	currentRaceCheckpoints = data.length
+       $.ajax({
+          url: "/api/checkpoints/completed",
+          method: "get"
+        }).done(function(data) {
+          userCheckpoints = data.length
+          setMeter();
+        });      
 	  });
 }
 
-//get the amount of completed checkpoints by a user for current race
-var getUserCheckpoints = function() {
-	 $.ajax({
-	    url: "/api/checkpoints/completed",
-	    method: "get"
-	  }).done(function(data) {
-	  	userCheckpoints = data.length
-	  });
-}
 
-var checkProgress = function() {
-	getUserCheckpoints();
-	getRaceCheckpoints();
-	setMeter();
-}
+
 
 // get created_at time of current race
 // var getCreatedAtTime = function() {
@@ -157,19 +145,8 @@ var checkProgress = function() {
 
 $(document).ready(function(){
 
-	setInterval(checkProgress(), 10000);
-
 	  $('.colour-marker').each(function() {
         $(this).css('color', getRandomColour());
-    });
-
-    $('#fullpage').fullpage({
-
-        navigation: true,
-        navigationPosition: 'right',
-        
-
-      verticalCentered: false
     });
 
 	// getCreatedAtTime()
