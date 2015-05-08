@@ -195,5 +195,11 @@ helpers do
 		end
 	end
 
+	def race_time
+		created_at = current_race.created_at
+		race_time = Time.now.utc - created_at
+		Time.at(race_time).strftime("%H:%M:%S")
+	end
+
 end
 

@@ -45,7 +45,7 @@
                   <h5>Checkpoints</h5>
                 </div>
                 <div class="horizon-Page-Race-Columns-Title horizon-Page-Race-Columns-TimeLapse small-4 columns">
-                  <h5>Timelapse</h5>
+                  <h5>Race Clock</h5>
                 </div>
               </li>
 
@@ -66,7 +66,7 @@
                     <h5><%= user_checkpoints_hit(user.id).count %>/<%= current_race_checkpoints.count %></h5>
                   </div>
                   <div class="horizon-Page-Race-Columns horizon-Page-Race-Columns-TimeLapse small-4 columns">
-                    <h5>02:20:40</h5>
+                    <h5 class= "timer-InGame"><%= race_time %></h5>
                   </div>
                 </li>
 
