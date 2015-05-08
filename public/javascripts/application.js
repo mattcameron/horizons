@@ -1,13 +1,14 @@
-$(document).ready(function() {
-    $('#fullpage').fullpage({
 
-        navigation: true,
-        navigationPosition: 'right',
-        
+// Generate random hex colour for markers on index
+function getRandomColour() {
+    var letters = '123456789abcdef'.split('');
+    var color = '#';
+    for (var i = 0; i < 6; i++) {
+        color += letters[Math.floor(Math.random() * 16)];
+    }
+    return color;
+}
 
-      verticalCentered: false
-    });
-});
 
 // function to check whether a specific point is within any of our checkpoints
 function inCheckpoint(point) {
@@ -26,6 +27,8 @@ function inCheckpoint(point) {
         method: 'post'
       }).done(function() {
 
+        //  get user & race checkpoints, compare, then update tally
+        compareCheckpointsSetMeter()
         // check if this was the last checkpoint
         allCheckpoints();
       });
@@ -84,41 +87,29 @@ var userCheckpoints;
 
 // update html/css to show race progress stats for user
 var setMeter = function() {
-	setTimeout(function(){
-		$('.inGame-Meter').css('width', (userCheckpoints/currentRaceCheckpoints*100)+"%")},
-		500
-	);
-	setTimeout(function(){
-		$('.tally').html(userCheckpoints + "/" + currentRaceCheckpoints)},
-		500
-	);
+    $('.inGame-Meter').css('width', (userCheckpoints/currentRaceCheckpoints*100)+"%");
+    $('.tally').html(userCheckpoints + "/" + currentRaceCheckpoints);
 }
 
 //get the amount of current active race checkpoints
-var getRaceCheckpoints = function() {
+function compareCheckpointsSetMeter() {
 		$.ajax({
 	    url: "/api/checkpoints",
 	    method: "get"
 	  }).done(function(data) {
 	  	currentRaceCheckpoints = data.length
+       $.ajax({
+          url: "/api/checkpoints/completed",
+          method: "get"
+        }).done(function(data) {
+          userCheckpoints = data.length
+          setMeter();
+        });      
 	  });
 }
 
-//get the amount of completed checkpoints by a user for current race
-var getUserCheckpoints = function() {
-	 $.ajax({
-	    url: "/api/checkpoints/completed",
-	    method: "get"
-	  }).done(function(data) {
-	  	userCheckpoints = data.length
-	  });
-}
 
-var checkProgress = function() {
-	getUserCheckpoints();
-	getRaceCheckpoints();
-	setMeter();
-}
+
 
 // get created_at time of current race
 // var getCreatedAtTime = function() {
@@ -154,7 +145,9 @@ var checkProgress = function() {
 
 $(document).ready(function(){
 
-	setInterval(checkProgress(), 10000);
+	  $('.colour-marker').each(function() {
+        $(this).css('color', getRandomColour());
+    });
 
 	// getCreatedAtTime()
 
