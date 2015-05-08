@@ -22,12 +22,13 @@
 				<a href="#" data-reveal-id="myStatusModal" class="inGame-RELforCheckpointDIV-Menu small-4 columns hide-for-medium-up menu-icon"><i class="fi-list"></i></a>
 
 				<div id="myModal" class="reveal-modal" data-reveal>
-					<p class="username">MattCameron</p>
+					<p class="username"><%= current_user.user_name %> </p>
 					<p class="timer">00:00:00</p>
 					<form action="/session" method ="post" >
 						<input type="hidden" name="_method" value="delete">
 						<button class="btnLogout-inGame"><span class="fa fa-power-off"></span></button>
 					</form>
+					
 					<a class="close-reveal-modal">&#215;</a>
 				</div>
 
@@ -38,7 +39,7 @@
 				<div class="divBoxCheckpoint-Container small-8 medium-5 columns">
 
 					<div class="divBoxCheckpoint">
-						<h5 class="inGame-Checkpoint">Checkpoints <span class="tally">0/0</span></h5>
+						<h5 class="inGame-Checkpoint">Checkpoints <span class="tally"><%= @user.checkpoint_race_users.where(["race_id = ? and checkpoint_id IS NOT NULL", current_race.id]).count %>/<%= current_race.checkpoints.distinct.count %></span></h5>
 						<div class="progress progress-InGame success round">
 							<span class="meter inGame-Meter" style="width: 0%"></span>
 						</div>
@@ -67,7 +68,7 @@
 
 <!-- otherwise, tell them to start a new race -->
 <% else %>
-	<h1>This Race is over!! :( </h1>
+	<h1>This Race is over!! </h1>
 
 	<h3>Time to start a new one</h3>
 	<form action="/race/new" method="post">

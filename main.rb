@@ -11,8 +11,6 @@ require_relative 'checkpoint'
 enable :sessions
 
 before do
-	User.joins(:checkpoints)
-	@current_race = current_race
 	@user = current_user
 	@users = User.all
 end
@@ -24,6 +22,7 @@ end
 get '/' do
 	@race = Race.last
 	@users = @race.users.distinct
+	@five_users = @race.users.order(id: :asc).limit(6).uniq
   erb :index
 end
 
@@ -36,10 +35,12 @@ get '/login' do
 end
 
 get '/race' do
+
 	erb :race
 end
 
 post '/race/new' do
+	redirect to '/' if !logged_in?
 	# create new race
 	race = Race.create(name: "New Race", created_at: Time.now, ended: false)
 
@@ -58,7 +59,7 @@ end
 
 post '/race/join' do
 	# make sure they are logged in
-	redirect to '/login' if !logged_in?
+	redirect to '/' if !logged_in?
 
 	# Add current user to the current race
 	CheckpointRaceUser.create(
@@ -192,5 +193,6 @@ helpers do
 			!current_user_checkpoints_hit.include? checkpoint
 		end
 	end
+
 end
 

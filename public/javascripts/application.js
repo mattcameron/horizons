@@ -1,13 +1,14 @@
-$(document).ready(function() {
-    $('#fullpage').fullpage({
 
-        navigation: true,
-        navigationPosition: 'right',
-        
+// Generate random hex colour for markers on index
+function getRandomColour() {
+    var letters = '123456789abcdef'.split('');
+    var color = '#';
+    for (var i = 0; i < 6; i++) {
+        color += letters[Math.floor(Math.random() * 16)];
+    }
+    return color;
+}
 
-      verticalCentered: false
-    });
-});
 
 // function to check whether a specific point is within any of our checkpoints
 function inCheckpoint(point) {
@@ -26,6 +27,8 @@ function inCheckpoint(point) {
         method: 'post'
       }).done(function() {
 
+        //  get user & race checkpoints, compare, then update tally
+        checkProgress();
         // check if this was the last checkpoint
         allCheckpoints();
       });
@@ -86,11 +89,11 @@ var userCheckpoints;
 var setMeter = function() {
 	setTimeout(function(){
 		$('.inGame-Meter').css('width', (userCheckpoints/currentRaceCheckpoints*100)+"%")},
-		500
+		700
 	);
 	setTimeout(function(){
 		$('.tally').html(userCheckpoints + "/" + currentRaceCheckpoints)},
-		500
+		700
 	);
 }
 
@@ -155,6 +158,19 @@ var checkProgress = function() {
 $(document).ready(function(){
 
 	setInterval(checkProgress(), 10000);
+
+	  $('.colour-marker').each(function() {
+        $(this).css('color', getRandomColour());
+    });
+
+    $('#fullpage').fullpage({
+
+        navigation: true,
+        navigationPosition: 'right',
+        
+
+      verticalCentered: false
+    });
 
 	// getCreatedAtTime()
 

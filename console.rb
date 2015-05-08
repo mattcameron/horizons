@@ -1,5 +1,5 @@
 require 'active_record'
-# require 'pry'
+require 'pry'
 
 
 #show sql in the terminal
@@ -11,4 +11,4 @@ require_relative 'user'
 require_relative 'checkpoint'
 require_relative 'checkpoint_race_user'
 
-# binding.pry
+binding.pry
