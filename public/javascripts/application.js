@@ -105,18 +105,6 @@ function compareCheckpointsSetMeter() {
 
 
 /* Race clock *****************/
-milliseconds = parseFloat($('.timer-InGame').html());
-function msToTime(s) {
-  var ms = s % 1000;
-  s = (s - ms) / 1000;
-  var secs = s % 60;
-  s = (s - secs) / 60;
-  var mins = s % 60;
-  var hrs = (s - mins) / 60;
-
-  console.log(hrs + ':' + mins + ':' + secs);
-  return hrs + ':' + mins + ':' + secs;
-}
 
 function startTime() {
     var today = $('.timer-InGame').html();
@@ -159,7 +147,7 @@ $(document).ready(function(){
     });
 
     startTime();
-    
+
     compareCheckpointsSetMeter()
 });
 
