@@ -16,7 +16,6 @@
 	<div id="GameDetails-Container">
 		<div class="inGame-RELforCheckpointDIV row">
 
-			<!-- display map stuff if there is a race running -->
 
 			<!-- Size Classes: [small medium large xlarge expand] -->
 			<a href="#" data-reveal-id="myStatusModal" class="inGame-RELforCheckpointDIV-Menu small-4 columns hide-for-medium-up menu-icon"><i class="fi-list"></i></a>
@@ -61,7 +60,7 @@
 
 
 <div id="myStatusModal" class="reveal-modal" data-reveal>
-	<h2 class="username-InGame-ModalBox"><span class="status-InGame"></span> MattCameron</h2>
+	<h2 class="username-InGame-ModalBox"><span class="status-InGame"></span> <%=  current_user.user_name %></h2>
 	<p class="timer timer-InGame"><%= race_time %></p>
 	<div class="row">
 		<h4><i class="fi-graph-bar"></i>
@@ -119,7 +118,6 @@
 		</ul>
 	</div>
 
-	>>>>>>> a3047023e582403973176d33846df198c9db691d
 	<button class="main-btn btnLogout">Log Out</button>
 	<a class="close-reveal-modal">&#215;</a>
 </div>

@@ -195,7 +195,7 @@ helpers do
 
 	def race_time
 		created_at = current_race.created_at
-		race_time = Time.now.utc - created_at
+		race_time = (Time.now.utc - created_at) - 36000
 		Time.at(race_time).strftime("%H:%M:%S")
 	end
 
