@@ -23,8 +23,12 @@ if ("geolocation" in navigator) {
       title: 'My Current Position!'
     });
 
-    //check if the current position is within a checkpoint
+    // check if the current position is within a checkpoint
     inCheckpoint(currentPosition)
+
+    // rezoom the map to fit the current user's location
+    bounds.extend(currentPosition);
+    map.fitBounds(bounds)
   }
 
   // function to run if there is an error getting the current location
