@@ -6687,7 +6687,7 @@ color: #fafafa;
 }
 
 .howToPlay-Info h4{
-  font-family: "Open Sans", Helvetica, Roboto, Arial, sans-serif;;
+  font-family: "Arvo", Georgia, Cambria, "Times New Roman", Times, serif;
   text-transform: uppercase;
   color: #fafafa;
   font-size: 28px;
@@ -6740,3 +6740,72 @@ font-weight: 700;
   top: 50%;
 }
 
+#DaTeam {
+  background: url('../img/teamAslanBG.jpg')no-repeat center;
+  background-size: cover;
+}
+
+.daTeam-Container {
+  background: #F8F9FD;
+  overflow: hidden;
+    border-radius: 0 4px 4px 0;
+    margin-bottom: 15px;
+}
+
+.daTeam-Profile ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.daTeam-Profile ul li{
+position: relative;
+}
+
+.daTeam-Profile figure {
+  margin: 0;
+  float: left;
+  position: relative;
+}
+
+.daTeam-Profile figure:after {
+content: " ";
+  width: 0;
+  height: 0;
+  border-width: 15px 15px 15px 0;
+  display: block;
+  position: absolute;
+  border-style: solid;
+  border-color: transparent #F8F9FD transparent #F8F9FD;
+  top: 20px;
+  right: 0;
+}
+
+.daTeam-Profile section {
+  float: left;
+  padding-left: 15px;
+}
+
+
+.daTeam-Profile h4 {
+    font-family: "Arvo", Georgia, Cambria, "Times New Roman", Times, serif;
+  text-transform: uppercase;
+  color: #0c1c2d;
+  font-size: 28px;
+  margin-top: 10px;
+  margin-bottom: 0;
+}
+
+.daTeam-Profile h5 {
+    font-family: "Open Sans", Helvetica, Roboto, Arial, sans-serif;
+  margin-top: 0;
+  text-transform: uppercase;
+  color: #2ea5b9;
+}
+
+.sosmedAslan li {
+  display: inline-block;
+  font-size: 24px;
+  margin-right: 10px;
+  margin-top: 20px;
+}
