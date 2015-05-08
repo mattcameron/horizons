@@ -14,9 +14,12 @@
         <div class="row">
 
           <section class="horizon-Page-Blurb medium-5 columns">
-           <% if logged_in? %>
-            <p class="username">Welcome <%= current_user.user_name %>! </p>
-            <% end %>
+
+            <% if logged_in? %>
+              <h5 class="username-home">Welcome <span><%= current_user.user_name %> </span>! </h5>
+            <% end %>  
+
+
             <h2>Expand your HORiZONS in a fun way</h2>
             <p>by racing others through the city you love. There may or may not be a prize for winning.</p>
             <h5><a href="#" class="horizon-Page-Blurb-Secondary-Link">More info</a></h5>
@@ -57,10 +60,10 @@
                   <div class="horizon-Page-Race-Columns small-4 columns">
 
                     <div class="progress">
-                      <span class="meter" style="width: <%= (current_user_checkpoints_hit.count.to_f/current_race_checkpoints.count)*100 %>%"></span>
+                      <span class="meter" style="width: <%= (user_checkpoints_hit(user.id).count.to_f/current_race_checkpoints.count)*100 %>%"></span>
                     </div>
 
-                    <h5><%= current_user_checkpoints_hit.count %>/<%= @race.checkpoints.distinct.count %></h5>
+                    <h5><%= user_checkpoints_hit(user.id).count %>/<%= current_race_checkpoints.count %></h5>
                   </div>
                   <div class="horizon-Page-Race-Columns horizon-Page-Race-Columns-TimeLapse small-4 columns">
                     <h5 class= "timer-InGame"><%= race_time %></h5>
@@ -102,13 +105,6 @@
             <section class="howToPlay-Info medium-5 columns">
               <h4><i class="fi-compass"></i> How to Play</h4>
               <ul>
-                <li class="howToPlay-SignIn">
-                  <i class="fa fa-sign-in"></i>
-                  <section class="howToPlayList-Right">
-                    <h3><a href="#">Sign in</a> or <a href="#">register</a> </h3>
-                    <p>Adipiscing elit. Vestibulum purus diam, pharetra non nibh vel, laoreet dignissimi.</p>
-                  </section>
-                </li>
                 <li class="howToPlay-Join">
                   <i class="fa fa-crosshairs"></i>
                   <section class="howToPlayList-Right">
@@ -127,7 +123,7 @@
               <h5><a href="#" class="horizon-Page-Blurb-Secondary-Link">About team Aslan</a></h5>
             </section>
 
-            <section class="howToPlay-Devices medium-7 columns">
+            <section class="howToPlay-Devices hide-for-small-only medium-7 columns">
               <a role="button" href="#" data-reveal-id="accessHorizons" class="main-btn button radius large medium-6 medium-offset-3 column">Join the race</a>
             </section>
         </div>
@@ -201,12 +197,12 @@
 
   <div id="Main-Footer-DIV" class="row">
     <footer class="main-Footer-DIV-Footer">
-      <div class="medium-5 columns">
+      <div class="small-3 medium-5 columns">
         <object type="image/svg+xml" data="img/teamaslanlogo.svg" class="aslan-logo">
         Team Aslan<!-- fallback image in CSS -->
         </object>
       </div>
-      <div class="medium-7 columns end">
+      <div class="small-9 medium-7 columns end">
         <p>&copy; 2015 Team Aslan. A <a href="#" > General Assembly</a> Project.  <a href="#" >Terms &amp; Conditions</a> | <a href="#" >Privacy Policy</a> | <a href="#" >Contact</a></p>
       </div>
     </footer>

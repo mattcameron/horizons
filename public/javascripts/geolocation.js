@@ -28,7 +28,7 @@ if ("geolocation" in navigator) {
 
     // rezoom the map to fit the current user's location
     bounds.extend(currentPosition);
-    map.fitBounds(bounds)
+    map.fitBounds(bounds);
   }
 
   // function to run if there is an error getting the current location

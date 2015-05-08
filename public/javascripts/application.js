@@ -1,4 +1,8 @@
 
+var currentRaceCheckpoints;
+var userCheckpoints;
+
+
 // Generate random hex colour for markers on index
 function getRandomColour() {
     var letters = '123456789abcdef'.split('');
@@ -48,25 +52,15 @@ function inCheckpoint(point) {
 
 // check whether the user has hit all of the checkpoints
 function allCheckpoints() {
-  // get the user's completed checkpoints
-  $.ajax({
-    url: '/api/checkpoints/completed',
-    method: 'get'
-  }).done(function(checkpoints) {
-    // check if the user has hit all of the checkpoints
-    if ( checkpoints.length === locationPolys.length ) {
-
-      //end the game
-      gameOver();
-
+  // check if the user has hit all of the checkpoints
+  if ( userCheckpoints === currentRaceCheckpoints ) {
+    //end the game
+    gameOver();
     alert('WOOOO HOOOOO!!! YOU WON THE GAME!')
   } else {
     // game is still running
     alert('Congratulations, you reached a checkpoint!')
   };
-
-
-  })
 
 }
 
@@ -78,8 +72,6 @@ function gameOver() {
       });
 }
 
-var currentRaceCheckpoints;
-var userCheckpoints;
 
 // var raceCreatedAt;
 // var elapsedTime;
@@ -104,7 +96,7 @@ function compareCheckpointsSetMeter() {
         }).done(function(data) {
           userCheckpoints = data.length
           setMeter();
-        });      
+        });
 	  });
 }
 
@@ -167,7 +159,8 @@ $(document).ready(function(){
     });
 
     startTime();
-
+    
+    compareCheckpointsSetMeter()
 });
 
 
