@@ -106,7 +106,7 @@ end
 # Current user completed checkpoints
 get '/api/checkpoints/completed' do
 	content_type :json
-	current_user_checkpoints_hit.to_json
+	user_checkpoints_hit(current_user.id).to_json
 end
 
 post '/api/checkpoints/:id/new' do
@@ -189,7 +189,7 @@ helpers do
 
 	def current_user_checkpoints_left
 		current_race_checkpoints.select do |checkpoint|
-			!current_user_checkpoints_hit.include? checkpoint
+			!user_checkpoints_hit(current_user.id).include? checkpoint
 		end
 	end
 
