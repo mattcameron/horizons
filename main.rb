@@ -45,11 +45,18 @@ post '/race/new' do
 	# create new race
 	race = Race.create(name: "New Race", created_at: Time.now, ended: false)
 
-	# add the 4 default checkpoints to this race
-	CheckpointRaceUser.create(checkpoint_id: 1, race_id: race.id)
-	CheckpointRaceUser.create(checkpoint_id: 2, race_id: race.id)
-	CheckpointRaceUser.create(checkpoint_id: 3, race_id: race.id)
-	CheckpointRaceUser.create(checkpoint_id: 4, race_id: race.id)
+	# create 4 randomly generated checkpoints
+	4.times do
+		# get latitude and longitude
+		randLat = rand(-37.821070..-37.810154)
+		randLng = rand(144.950044..144.974720)
+		randChkpt = Checkpoint.create(
+			name: "Randomly Generated Checkpoint",
+			description: "Randomly Generated Checkpoint",
+			latitude: randLat,
+			longitude: randLng)
+		CheckpointRaceUser.create(checkpoint_id: randChkpt.id, race_id: race.id)
+	end
 
 	# add the current user to this race
 	CheckpointRaceUser.create(race_id: race.id, user_id: current_user.id)
