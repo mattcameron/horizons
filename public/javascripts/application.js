@@ -145,7 +145,7 @@ $(document).ready(function(){
         $(this).css('color', getRandomColour());
     });
 
-    compareCheckpointsSetMeter()
+    // compareCheckpointsSetMeter()
     startTime();
 
 });
