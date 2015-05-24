@@ -33,8 +33,6 @@ function inCheckpoint(point) {
 
         //  get user & race checkpoints, compare, then update tally
         compareCheckpointsSetMeter()
-        // check if this was the last checkpoint
-        allCheckpoints();
       });
 
         // remove this checkpoint from the locationPolys array
@@ -95,6 +93,9 @@ function compareCheckpointsSetMeter() {
         }).done(function(data) {
           userCheckpoints = data.length
           setMeter();
+
+          // check if this was the last checkpoint
+          allCheckpoints();
         });
 	  });
 }
