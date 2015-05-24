@@ -107,13 +107,13 @@ end
 # Current user checkpoints left to hit
 get '/api/checkpoints/left' do
 	content_type :json
-	current_user_checkpoints_left.to_json
+	current_user_checkpoints_left.to_json if logged_in?
 end
 
 # Current user completed checkpoints
 get '/api/checkpoints/completed' do
 	content_type :json
-	user_checkpoints_hit(current_user.id).to_json
+	user_checkpoints_hit(current_user.id).to_json if logged_in?
 end
 
 post '/api/checkpoints/:id/new' do
