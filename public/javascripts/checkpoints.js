@@ -77,7 +77,7 @@ function initialize() {
         fillColor: '#2ea5b9',
         fillOpacity: 0,
         map: map,
-        paths: drawCircle(thisLatLng,.03,1),
+        paths: drawCircle(thisLatLng,.04,1),
         id: value.id
       })
 

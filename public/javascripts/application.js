@@ -43,7 +43,6 @@ function inCheckpoint(point) {
         // remove the marker from the array and the map
         checkpointMarkers[index].setMap(null);
         checkpointMarkers.splice(index, 1);
-
       return;
     };
   });
@@ -79,7 +78,7 @@ function gameOver() {
 
 // update html/css to show race progress stats for user
 var setMeter = function() {
-    $('.inGame-Meter').css('width', (userCheckpoints/currentRaceCheckpoints*100)+"%");
+    $('.inGame-Meter, .meter').css('width', (userCheckpoints/currentRaceCheckpoints*100)+"%");
     $('.tally').html(userCheckpoints + "/" + currentRaceCheckpoints);
 }
 
